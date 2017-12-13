@@ -1,0 +1,47 @@
+/* header color #d72738
+  JS FONT HEADER + content #bfd7ea;
+  background #13355b
+  navbar #0a7e8b;
+  main content #0c1821;
+  link color #3bcfe0;
+  code color #3e4b80;
+
+  */
+
+body {
+  background-color: #13355b;
+  width: 970px;
+}
+
+#header {
+
+background-color: #d72638;
+height: 80px;
+border-radius: 8px;
+margin: 18px;
+
+}
+
+#header h1 {
+color: #bfd7ea;
+padding: 20px;
+
+}
+
+#navbar {
+
+  background-color: #0a7e8b;
+  width: 260px;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 18px;
+
+}
+
+#navbar a{
+  color: #3bcfe0;
+}
+
+#navbar li {
+  color: white;
+}

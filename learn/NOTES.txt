@@ -1,0 +1,20 @@
+diplay: inline-block
+verticle align: top
+
+margin: auto
+
+CSS Position
+
+
+
+position: static; // Not positioned in any special way, it is positioned according to the normal document flow.
+position: fixed; // Position stays to the Viewport. stays the same whenever i stroll
+
+
+CSS RESET
+
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	}
