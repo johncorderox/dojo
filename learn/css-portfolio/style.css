@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  background: linear-gradient(#48353d, #b297a2);
+  width: 920px;
+  height: 1000px;
+}
+
+#header {
+  width: 900px;
+  height: 50px;
+  background-color: #fafafa;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+#header h1 {
+  display: inline;
+  margin-left: 10px;
+}
+
+#header h2 {
+  display: inline;
+  margin-left: 420px;
+  font-size: 18px;
+}
+
+#selfie img {
+  height: 220px;
+  width: 340px;
+  border: 5px solid #c0c0c0;
+  margin-left: 15px;
+}
+
+#selfie {
+  display: inline-block;
+}
+
+#about-text {
+  height: 230px;
+  width: 480px;
+  display: inline-block;
+  margin-left: 40px;
+  vertical-align: top;
+  background-color: white;
+}
+
+h3, #lamode-tech, #fc-tech, #f-tech {
+  background-color: #888693;
+  color: white;
+  padding: 8px;
+}
+
+#lamode-tech, #fc-tech, #f-tech {
+  font-size: 18px;
+}
+
+#about-content {
+  padding: 10px;
+}
+
+#about-content p {
+  margin-bottom: 12px;
+}
+
+#about-content a {
+  color: black;
+}
+
+#lamode, #familycontacts, #five {
+  height: 550px;
+  background-color: white;
+  margin-left: 15px;
+  margin-top: 20px;
+}
+
+#lamode-text, #fc-text, #f-text {
+  padding: 10px;
+}
+
+#lamode, #lamode img, #familycontacts, #familycontacts img, #five, #five img {
+  width: 280px;
+  vertical-align: top;
+}
+
+#tech-images img, #fc-images img, #f-images img {
+  width: 38px;
+  margin-left: 13px;
+  margin-top: 10px;
+}
+
+#lamode button, #familycontacts button, #five button {
+  background-color: #3f7d63;
+  color: white;
+  border: 1px solid black;
+  padding: 7px;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-left: 90px;
+}
+
+#lamode, #familycontacts, #five {
+  display: inline-block;
+}
+
+#footer {
+  height: 80px;
+  margin-top: 29px;
+  background-color: white;
+  color: gray;
+  font-size: 14px;
+}
+
+#footer img {
+  width: 19px;
+  margin-top: 9px;
+}
+
+#footer a {
+  color: gray;
+  margin-top: 9px;
+}
+
+#footer #contact {
+
+  margin-left: 400px;
+}
+
+#footer #social {
+
+  margin-left: 340px;
+}
