@@ -5,12 +5,13 @@
   font-family: arial;
 }
 body {
-  height: 1000px;
   width: 1000px;
 }
 
 #top-main-content {
   background-color: #1a5274;
+  height: 500px;
+
 
 }
 #top {
@@ -126,14 +127,58 @@ color: white;
   margin-top: 20px;
   margin-left: 90px;
 }
-#poem h3 {
+#poem h3{
 
-  margin-top: 20px;
+  margin-top: 17px;
   color: #d1b05a;
   font-style: italic;
+  font-size: 16px;
 }
 #poem p {
 
   font-size: 15px;
   margin-top: 10px;
+}
+
+#white-left, #white-right{
+
+  width: 400px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+  margin-top: 30px;
+}
+#white-content hr {
+  border: 1.5px solid #67a2ce;
+  width: 300px;
+  margin: 10px auto;
+}
+
+#white-content {
+
+  margin-left: 90px;
+}
+#white-left a, #white-right a {
+
+  color: #6fa5cd;
+  margin-top: 10px;
+}
+#footer {
+
+  margin-top: 20px;
+  display: block;
+  width: 1000px;
+  height: 70px;
+  background-color: #1a5274;
+  color: #7db0d7;
+}
+#footer h3 {
+
+  display: inline-block;
+  margin-left: 70px;
+
+}
+#footer p {
+  margin-left: 370px;
+  margin-top: 20px;
 }
