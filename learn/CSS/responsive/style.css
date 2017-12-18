@@ -1,0 +1,40 @@
+/*
+1024 desktop
+481-1023 tablet
+1 - 480 phone
+
+*/
+*{
+
+  margin: 0px;
+  padding: 0px;
+
+}
+
+button {
+
+  padding: 70px;
+  background-color: red;
+}
+
+@media only screen and (max-width: 1023px) {
+
+  .nav-btn {
+
+    background-color: blue;
+    width:350px;
+  }
+
+
+}
+
+
+@media only screen and (max-width: 480px) {
+
+  .nav-btn {
+
+    background-color: yellow;
+  }
+
+
+}

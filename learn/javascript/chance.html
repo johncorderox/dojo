@@ -1,0 +1,44 @@
+<body>
+  <h2>
+  Arrays
+</h2>
+</body>
+<script>
+
+var quarters = 100;
+
+function game () {
+
+  if (quarters) {
+
+    checkWon();
+  }
+
+}
+
+
+function winquarter() {
+
+  var winningQ = Math.floor(Math.random() * 100) + 50;
+
+  quarters+= winningQ;
+  console.log("YOU WON: "+quarters);
+}
+
+function checkWon() {
+
+  var winning = Math.floor(Math.random() * 100) + 1;
+  var winning2 = Math.floor(Math.random() * 100) + 1;
+  console.log(quarters);
+  if (winning === winning2) {
+
+    winquarter();
+  } else {
+
+    quarters--;
+    checkWon();
+  }
+}
+
+game();
+</script>

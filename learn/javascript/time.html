@@ -1,0 +1,29 @@
+<body>
+  <h2>
+  Check Console
+</h2>
+</body>
+<script>
+var hour = 8;
+var minute = 50;
+var period = "AM";
+
+if (hour > 7) {
+
+  if (minute >= 50 && period === "AM") {
+
+    console.log("It's almost 9 in the morning");
+  }
+}
+
+if (hour === 7) {
+
+  if (minute === 15) {
+
+    if (period === "PM") {
+
+      console.log("It's just after 7 in the evening");
+    }
+  }
+}
+</script>
