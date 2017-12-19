@@ -1,0 +1,29 @@
+<head>
+<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+</head>
+<body>
+  <h2>
+  JQuery
+</h2>
+  <br />
+  <h3>Check console....</h3>
+  <button id="start">start</button>
+  <button id="start2">start2</button>
+<input id="input"type="text" />
+<h2>Start...</h2>
+
+</body>
+<script>
+$(document).ready(function(){
+
+$('#start').click(function() {
+
+  var texts = $('#input').val();
+  $('h2').prepend(texts);
+
+
+});
+
+});
+
+</script>
