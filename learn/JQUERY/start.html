@@ -1,29 +1,44 @@
 <head>
-<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 </head>
-<body>
-  <h2>
-  JQuery
-</h2>
-  <br />
-  <h3>Check console....</h3>
-  <button id="start">start</button>
-  <button id="start2">start2</button>
-<input id="input"type="text" />
-<h2>Start...</h2>
 
-</body>
+<div id='myDiv'>
+    <p>Here is a paragraph.  It is a beautiful paragraph.</p>
+    <h3>Michael Choi</h3>
+    <h3>John Supsupin</h3>
+    <h3>Trey Villafane</h3>
+</div>
+
+
+<hr />
+
+<div>
+   <button>Click me for crazy things!</button>
+   <ul>
+       <li><h3>Tiger Woods</h3></li>
+       <li><h3>Phil Mickelson</h3></li>
+       <li><h3>Ben Hogan</h3></li>
+       <li><h3>Jack Nicklaus</h3></li>
+       <li><h3>Gary Player</h3></li>
+       <li><h3>Rory Mcilroy</h3></li>
+   </ul>
+</div>
+
+
 <script>
-$(document).ready(function(){
+$('#myDiv').children('h3').css('background-color', 'green');
 
-$('#start').click(function() {
+$('h3, p').click(function(){
+    $(this).parent().append('<h2>HOWDY CODING DOJO!</h2>');
+})
 
-  var texts = $('#input').val();
-  $('h2').prepend(texts);
+$('h3, p').click(function(){
+     $(this).siblings().hide();
+ })
 
+ $('button').click(function(){
+    $(this).siblings().children().children().text('Michael Choi was here!')
+})
 
-});
-
-});
 
 </script>

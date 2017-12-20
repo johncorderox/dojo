@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+   <head>
+       <meta charset="utf-8">
+       <title>Puzzle</title>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+       <style>
+       img {
+
+         display: block;
+         margin-top: 10px;
+         cursor: pointer;
+       }
+       </style>
+   </head>
+   <body>
+       <h2>Puzzle...</h2>
+       <img id="1" src="img/cat0.png" alt="pic" />
+       <img id="2" src="img/cat1.png" alt="pic" />
+       <img id="3" src="img/ninja0.png" alt="pic" />
+       <img id="4" src="img/ninja1.png" alt="pic" />
+       <img id="5" src="img/ninja2.png" alt="pic" />
+
+   </body>
+</html>
+
+<script>
+
+$(document).ready(function(){
+
+  $('img').click(function(){
+
+    var arr = ['cat0', 'cat1', 'cat2', 'cat3', 'cat4', 'ninja0', 'ninja1', 'ninja2', 'ninja3', 'ninja4'];
+
+    var imgrandom = Math.floor((Math.random() * 9) + 0);
+
+    $(this).attr("src", "img/"+arr[imgrandom]+".png");
+
+  });
+
+});
+</script>
