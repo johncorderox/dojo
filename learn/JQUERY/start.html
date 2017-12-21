@@ -1,44 +1,14 @@
-<head>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-</head>
-
-<div id='myDiv'>
-    <p>Here is a paragraph.  It is a beautiful paragraph.</p>
-    <h3>Michael Choi</h3>
-    <h3>John Supsupin</h3>
-    <h3>Trey Villafane</h3>
-</div>
-
-
-<hr />
-
-<div>
-   <button>Click me for crazy things!</button>
-   <ul>
-       <li><h3>Tiger Woods</h3></li>
-       <li><h3>Phil Mickelson</h3></li>
-       <li><h3>Ben Hogan</h3></li>
-       <li><h3>Jack Nicklaus</h3></li>
-       <li><h3>Gary Player</h3></li>
-       <li><h3>Rory Mcilroy</h3></li>
-   </ul>
-</div>
-
-
-<script>
-$('#myDiv').children('h3').css('background-color', 'green');
-
-$('h3, p').click(function(){
-    $(this).parent().append('<h2>HOWDY CODING DOJO!</h2>');
-})
-
-$('h3, p').click(function(){
-     $(this).siblings().hide();
- })
-
- $('button').click(function(){
-    $(this).siblings().children().children().text('Michael Choi was here!')
-})
-
-
-</script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HTTP Request Response</title>
+    <script src="https://code.jquery.com/jquery..."></script>
+  </head>
+  <body>
+    <img src="pokeapi.co/media/sprites/pokemon/1.png" alt="bulbasaur"><!-- add http:// before the website name -->
+    <video
+      src="http://a1068.v.phobos.apple.co..."
+      controls></video>
+  </body>
+</html>

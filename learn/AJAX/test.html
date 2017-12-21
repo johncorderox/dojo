@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Pokemon API</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+<h1>Pokemon AJAX</h1>
+</body>
+<script>
+$(document).ready(function(){
+  $.get("https://pokeapi.co/api/v2/pokemon/1/", function(res) {
+     document.write(res.abilities);
+  }, "json");
+})
+</script>

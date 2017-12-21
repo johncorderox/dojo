@@ -15,33 +15,29 @@
     }
     $(document).ready(function() {
 
-
-      $(' body #large_box').click(function() {
-
-    alert("large clicked");
-
-      });
-
-      $('.middle_box').click(function() {
-
-        $('.middle_box').parent.css("background-color", random_color());
+      $('#large_box').click(function(){
+        $(this).css('background-color', random_color());
+        $(this).children().css('background-color', random_color());
 
       });
 
+      $('.middle_box').click(function(){
 
+          event.stopPropagation();
+          $(this).siblings().css("background-color", random_color());
+
+      });
+
+      $('.side_box').click(function(){
+
+          event.stopPropagation();
+          $(this).siblings().css("background-color", random_color());
+
+      });
 
 
 
     });
-
-
-
-         $('.side_box').click(function(event){
-            event.stopPropagation();
-         })
-         $('.middle_box').click(function(event){
-            event.stopPropagation();
-});
   </script>
   <style type="text/css">
     * {

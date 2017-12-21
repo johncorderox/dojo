@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Contact Card</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <style>
+    input {
+
+      padding: 10px;
+      width: 180px;
+      height: 7px;
+      margin-left: 10px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+
+    textarea {
+
+      height: 80px;
+      width: 200px;
+    }
+
+    button {
+
+      padding: 10px;
+      background-color: pink;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+
+    #cards {
+
+      display: inline-block;
+      margin-left: 300px;
+    }
+
+    #form {
+
+      display: inline-block;
+      vertical-align: top;
+
+    }
+
+    #card-info {
+
+      width: 350px;
+      height: 100px;
+      border: 1px solid black;
+      margin-bottom: 20px;
+    }
+
+    #card-info p, #card-info h2{
+
+      text-align: center;
+    }
+
+    #card-info p {
+
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="form">
+    <h2>Contact Cards</h2>
+    <form>
+      <label for="fn">First Name: </label>
+      <input type="text" id="fn" autofocus="true"><br />
+      <label for="ln">Last Name:</label>
+      <input type="text" id="ln" /><br />
+      <label for="desc">Description</label><br />
+      <textarea id="desc"></textarea><br />
+      <button type="submit" id="submit">Add User</button>
+    </form>
+  </div>
+  <div id="cards">
+  </div>
+</body>
+
+</html>
+
+<script>
+
+$(document).ready(function() {
+
+
+  $('#submit').click(function(e){
+
+
+    var fn = $('#fn').val();
+    var ln = $('#ln').val();
+    var des = $('textarea').val();
+    var click = "Click for description!";
+
+    e.preventDefault();
+
+   $('#cards').append("<div id=\"card-info\"><div id=\"first\"><h2>"+fn+" "+ln+"</h2><p id=\"show\">"+click+"</p></div><p id=\"des\">"+des+"</p></div>");
+
+
+   $('#des').hide();
+  });
+
+
+  });
+
+
+$(document).on('click', '#show', function(){
+
+
+    $('#first').hide();
+   $('#des').show();
+
+});
+
+
+
+
+
+</script>
