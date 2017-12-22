@@ -70,7 +70,7 @@ $(document).ready(function(){
     var pokemonid = $(this).attr('id');
     var apiurl    = "http://pokeapi.com/api/v2/pokemon/";
 
-    $.get("https://pokeapi.com/api/v2/pokemon/1/", function(res) {
+    $.get("https://pokeapi.com/api/v2/pokemon/"+pokemonid, function(res) {
 
         console.log(res);
 
