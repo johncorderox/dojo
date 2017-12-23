@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JQuery Functions</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+
+    <style>
+
+
+    .totoro {
+
+
+      color: red;
+      background-color: pink;
+      margin: 50px;
+      border: 5px dashed purple;
+      height: 200px;
+      width: 300px;
+      display: block;
+    }
+
+    </style>
+	</head>
+	<body>
+    <button id="data1">Data 1</button>
+    <button id="data2">Data 2</button>
+    <h1>Hello! World</h1>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+		<img src="https://bostonhassle.com/wp-content/uploads/2017/06/1448313061-c89d52dabb54dd3cfefe60aa5ef0bf03.jpeg" alt='https://images.moviepilot.com/images/c_limit,q_auto:good,w_600/di1kjw12zak7mpa7i06z/shintoism-as-viewed-in-spirited-away-and-other-japanese-media.jpg'>
+    <div class="toadd">
+      <div id="data">
+
+      </div>
+    </div>
+  <div id="links">
+  <ul>
+  	<li>This is a list</li>
+  	<li>chinese food is good</li>
+  	<li>sweet and sour chicken was a good choice</li>
+  </ul>
+  <h4>Slide down</h4>
+  </div>
+      <div id="buttons">
+        <button id="slideup">Start</button>
+        <button class="slidedown">Stop</button>
+        <button id="fadein">Restart</button>
+        <button id="toadd">Click me to add class</button>
+    </div><br /><br />
+    <form>
+      <input type="text" id="val" />
+      <button id="valbutton"type="submit">CHECK VAL</button>
+    </form>
+	</body>
+</html>
+
+<script>
+$(document).ready(function(){
+
+  //click event
+  $('img').click(function(){
+    var new_link = $('img').attr('alt');
+    var old_link = $('img').attr('src');
+    $('img').attr('src', new_link);
+    $('img').attr('alt', old_link);
+    console.log("Click Event");
+
+  });
+
+
+// hide event
+
+$('#slideup').click(function(){
+
+  $('h4').slideUp();
+
+});
+
+$('.slidedown').click(function(){
+
+  $('h4').slideDown();
+
+});
+
+$('img').click(function(){
+
+  $('img').toggle("slow");
+
+
+});
+
+$('p').click(function(){
+
+
+  $('p').fadeOut();
+
+});
+
+$('#fadein').click(function(){
+
+
+  $('p').fadeIn();
+
+});
+
+$('#toadd').click(function(){
+
+  $('img').addClass('totoro');
+
+});
+
+
+$('#valbutton').click(function(e){
+
+  var vals = "korean food is good!";
+
+  e.preventDefault();
+  $('input:text').val(vals);
+
+
+});
+
+
+$('input').focus(function(){
+
+  $('input').before("<p>THIS SHOULD BE BEFORE THE INPUT</p>");
+  $('input').after("<p>THIS SHOULD BE AFFTERRRRRRR THE INPUT</p>");
+  $('#valbutton').hide();
+  $('p').text("THE TEXT SHOULD HAVE CHANGED. DID IT?");
+
+});
+
+
+$('#data1').click(function(){
+
+  $('#data').data("greeting", "HELLO WORLD");
+
+});
+
+$('#data2').click(function(){
+
+  alert($('#data').data("greeting"));
+
+
+});
+
+
+});
+
+</script>
