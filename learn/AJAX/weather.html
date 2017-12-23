@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Weather API</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  <style>
+
+  input {
+    padding: 10px;
+    width: 300px;
+    }
+
+    button {
+
+      padding: 10px;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Enter a Location:</h1>
+<input type="text" id="location" /><br /><br />
+<button type="button" id="button">Check Weather</button>
+<hr>
+<div id="weather">
+</div>
+
+</body>
+
+<script>
+//key    66c460eaf3d5788fcd9b2e6e8c853404
+
+$(document).ready(function(){
+
+  $('button').click(function(e){
+
+  e.preventDefault();
+  var location = $('#location').val();
+
+    $.get("http://api.openweathermap.org/data/2.5/weather?q="+location+"&&appid=66c460eaf3d5788fcd9b2e6e8c853404", function(res){
+
+
+      var kelvin = res.main.temp;
+
+      var a = 9 / 5;
+      var b = 459.67;
+
+      var weather = kelvin * a - b;
+
+      var temp = Math.floor(weather);
+      console.log(res);
+
+      $('#weather').append(temp);
+
+    }, "json");
+
+  });
+
+});
+
+
+</script>

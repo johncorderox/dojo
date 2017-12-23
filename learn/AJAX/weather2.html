@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>weather</title>
+	<link rel="stylesheet" type="text/css" href="weather.css">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	<script>
+		$(document).ready(function() {
+
+		      //  var key = "ad57390505fda24337c43602b722e8a0";
+		          $.get("https://api.openweathermap.org/data/2.5/weather?q=anaheim&&appid=ad57390505fda24337c43602b722e8a0", function(res){
+								console.log(res);
+		            // your code here
+		        }, 'json');
+		        // don't forget to return false so the page doesn't refresh
+		        // return false;
+				});
+
+
+	</script>
+</head>
+<body>
+	<form>
+		<input type="text" name="city">
+	</form>
+</body >
+</html>
