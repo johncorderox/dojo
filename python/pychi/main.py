@@ -1,12 +1,24 @@
 # test script
 from flask import Flask
+from flask import render_template
 app = Flask(__name__)
 
 @app.route('/')
 
 def hello_world():
-    return 'This is the / route'
+    title = "MySQL Table Scripts"
+    desc  = "A sql script generator to save time"
 
+    html = """
+
+            <html>
+            <h1>{{title}} </h1>
+            <p>{{desc}}</p>
+            </html>
+
+    """
+
+    return html
 
 @app.route('/users')
 
