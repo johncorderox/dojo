@@ -6,19 +6,8 @@ app = Flask(__name__)
 @app.route('/')
 
 def hello_world():
-    title = "MySQL Table Scripts"
-    desc  = "A sql script generator to save time"
 
-    html = """
-
-            <html>
-            <h1>{{title}} </h1>
-            <p>{{desc}}</p>
-            </html>
-
-    """
-
-    return html
+    return render_template("index.html")
 
 @app.route('/users')
 
