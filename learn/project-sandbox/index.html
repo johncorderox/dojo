@@ -64,9 +64,8 @@
       Number of Columns: <input type="text" class="info" id="num_columns"/><br />
     </div>
     CREATE TABLE IF NOT EXISTS ` <input type="text" placeholder="table_name" id="table_name" /> ` (<br />
-    `
     <div id="columns">
-      <input type="text" id="column_name" placeholder="column_name"> `
+      ` <input type="text" id="column_name" placeholder="column_name"> `
       <select class="form-control" id="data_type">
       <option></option>
       <option>varchar(255)</option>
@@ -80,7 +79,7 @@
       <option>NOT NULL</option>
       <option>UNIQUE</option>
     </select>
-     <input type="checkbox" value=""> AUTO_INCREMENT</label><br />
+     <input type="checkbox"> AUTO_INCREMENT</label><br />
     </div>
     <br /> PRIMARY KEY ( ` <input type="text" id="primary_key" placeholder="key_name"> ` )
     <br /> <br />
@@ -101,11 +100,30 @@ $(document).ready(function(){
 
   $('#num_columns').on("focusout", function(){
 
+    $('.new_columns').remove();
+
       const num = $('#num_columns').val();
 
       for ( var i = 0; i < num; i++) {
 
-          $('#columns').append($('#columns').html());
+          $('#columns').append(
+
+          "<div class=\"new_columns\">"
+          +"<input type=\"text\" id=\"column_name\" placeholder=\"column_name\"> `"
+          +"<select class=\"form-control\" id=\"data_type\">"
+          +"<option></option>"
+          +"<option>varchar(255)</option>"
+          +"<option>int(11)</option>"
+          +"<option>DATE</option>"
+          +"<option>TIMESTAMP</option>"
+          +"<option>DATETIME</option>"
+          +"</select>"
+          +"<select class=\"form-control\" id=\"data_contraints\">"
+          +"<option></option>"
+          +"<option>NOT NULL</option>"
+          +"<option>UNIQUE</option>"
+          +"</select>"
+          +"<input type=\"checkbox\"> AUTO_INCREMENT</label></div><br />");
       }
   })
 
