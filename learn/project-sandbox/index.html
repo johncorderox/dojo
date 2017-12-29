@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <title>Sequel</title>
+
+  <style>
+
+  #data_type{
+    display: inline-block;
+    width: 250px;
+  }
+  textarea {
+
+    height: 200px;
+  }
+
+  input {
+    padding: 3px;
+    text-align: center;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    height: 35px;
+  }
+  </style>
+</head>
+
+<body>
+<h1>Sequel</h1>
+<div id="generator" class="container">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item active">Sequel Files</li>
+</ol>
+  CREATE TABLE IF NOT EXISTS ` <input type="text" placeholder="table_name" id="table_name" autofocus="true"/> ` (<br />
+  ` <input type="text" id="column_name" placeholder="column_name"> `
+   <div class="form-group" id="data_type">
+  <select class="form-control" id="data">
+    <option>varchar(255)</option>
+    <option>int(11)</option>
+    <option>timestamp</option>
+  </select>
+</div>
+ <input type="checkbox" value=""> AUTO_INCREMENT</label><br />
+ PRIMARY KEY ( ` <input type="text" id="primary_key" placeholder="key_name"> ` )<br />
+ );
+ <br />
+ <textarea class="form-control" id="code"></textarea>
+<button type="button" class="btn btn-primary"name="button" onclick="code()">Update</button>
+<button type="button" class="btn btn-danger"name="button">Reset</button>
+</div>
+
+</body>
+
+</html>
+
+<script>
+
+
+function code() {
+
+  const table_name = $('#table_name').val();
+  const column_name = $('#column_name').val();
+  const data_type = $('#data option:selected').text();
+  const primary_key = $('#primary_key').val()
+
+  var start  = "CREATE TABLE IF NOT EXISTS `"+table_name+"` (\n";
+  var column = "`"+column_name +"` " + data_type+"\n";
+  var primaryKey = "PRIMARY KEY (`"+primary_key+"`)";
+  var end ="\n );"
+  $('#code').text(start + column+ primaryKey+end);
+
+
+}
+
+
+
+</script>
