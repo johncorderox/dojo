@@ -7,12 +7,16 @@ app = Flask(__name__)
 
 def hello_world():
 
-    return render_template("index.html")
+    return render_template("index.html", name="John")
 
-@app.route('/users')
+@app.route('/process', methods = ['POST', 'GET'])
 
-def show_users():
-    return 'John Cordero  johncorderox@gmail.com'
+def result():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        return render_template("index.html")
+
 
 if __name__ == '__main__':
     app.run()

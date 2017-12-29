@@ -4,55 +4,92 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+  <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   <title>Sequel</title>
 
   <style>
+    #data_type,
+    #data_contraints {
+      display: inline-block;
+      width: 250px;
+    }
 
-  #data_type{
-    display: inline-block;
-    width: 250px;
-  }
-  textarea {
+    textarea {
 
-    height: 200px;
-  }
+      height: 200px;
+      margin-top: 25px;
+    }
 
-  input {
-    padding: 3px;
-    text-align: center;
-    border-radius: 4px;
-    border: 1px solid #d9d9d9;
-    height: 35px;
-  }
+    input[type="text"] {
+      padding: 3px;
+      text-align: center;
+      border-radius: 4px;
+      border: 1px solid #d9d9d9;
+      height: 35px;
+    }
+
+      #info-db .info {
+      background: transparent;
+      outline: 0;
+      border: 0;
+      border-bottom: 2px solid black;
+      width: 160px;
+      border-radius: 0px;
+      margin-left: 30px;
+    }
+
+    #info-db {
+      margin-bottom: 25px;
+    }
+    #primary_key{
+      margin-top: 20px;
+    }
+     #table_name {
+
+       margin-bottom: 25px;
+     }
   </style>
 </head>
 
 <body>
-<h1>Sequel</h1>
-<div id="generator" class="container">
-  <ol class="breadcrumb">
-  <li class="breadcrumb-item active">Sequel Files</li>
-</ol>
-  CREATE TABLE IF NOT EXISTS ` <input type="text" placeholder="table_name" id="table_name" autofocus="true"/> ` (<br />
-  ` <input type="text" id="column_name" placeholder="column_name"> `
-   <div class="form-group" id="data_type">
-  <select class="form-control" id="data">
-    <option>varchar(255)</option>
-    <option>int(11)</option>
-    <option>timestamp</option>
-  </select>
-</div>
- <input type="checkbox" value=""> AUTO_INCREMENT</label><br />
- PRIMARY KEY ( ` <input type="text" id="primary_key" placeholder="key_name"> ` )<br />
- );
- <br />
- <textarea class="form-control" id="code"></textarea>
-<button type="button" class="btn btn-primary"name="button" onclick="code()">Update</button>
-<button type="button" class="btn btn-danger"name="button">Reset</button>
-</div>
+  <h1>Sequel</h1>
+  <div id="generator" class="container">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active">Sequel Files</li>
+    </ol>
+    <div id="info-db">
+      SQL File Name: <input type="text" class="info" autofocus="true"><br />
+      Number of Columns: <input type="text" class="info" id="num_columns"/><br />
+    </div>
+    CREATE TABLE IF NOT EXISTS ` <input type="text" placeholder="table_name" id="table_name" /> ` (<br />
+    `
+    <div id="columns">
+      <input type="text" id="column_name" placeholder="column_name"> `
+      <select class="form-control" id="data_type">
+      <option></option>
+      <option>varchar(255)</option>
+      <option>int(11)</option>
+      <option>DATE</option>
+      <option>TIMESTAMP</option>
+      <option>DATETIME</option>
+    </select>
+      <select class="form-control" id="data_contraints">
+      <option></option>
+      <option>NOT NULL</option>
+      <option>UNIQUE</option>
+    </select>
+     <input type="checkbox" value=""> AUTO_INCREMENT</label><br />
+    </div>
+    <br /> PRIMARY KEY ( ` <input type="text" id="primary_key" placeholder="key_name"> ` )
+    <br /> <br />
+    );
+    <br />
+    <textarea class="form-control" id="code"></textarea>
+    <button type="button" class="btn btn-primary" name="button" onclick="code()">Update</button>
+    <button type="button" class="btn btn-danger" name="button">Reset</button>
+  </div>
 
 </body>
 
@@ -60,23 +97,33 @@
 
 <script>
 
+$(document).ready(function(){
 
-function code() {
+  $('#num_columns').on("focusout", function(){
 
-  const table_name = $('#table_name').val();
-  const column_name = $('#column_name').val();
-  const data_type = $('#data option:selected').text();
-  const primary_key = $('#primary_key').val()
+      const num = $('#num_columns').val();
 
-  var start  = "CREATE TABLE IF NOT EXISTS `"+table_name+"` (\n";
-  var column = "`"+column_name +"` " + data_type+"\n";
-  var primaryKey = "PRIMARY KEY (`"+primary_key+"`)";
-  var end ="\n );"
-  $('#code').text(start + column+ primaryKey+end);
+      for ( var i = 0; i < num; i++) {
+
+          $('#columns').append($('#columns').html());
+      }
+  })
+
+});
+  function code() {
+
+    const table_name = $('#table_name').val();
+    const column_name = $('#column_name').val();
+    const data_type = $('#data_type option:selected').text();
+    const constraint = $('#data_contraints option:selected').text();
+    const primary_key = $('#primary_key').val()
+
+    var start = "CREATE TABLE IF NOT EXISTS `" + table_name + "` (\n";
+    var column = "`" + column_name + "` " + data_type + " " + constraint + "\n";
+    var primaryKey = "PRIMARY KEY (`" + primary_key + "`)";
+    var end = "\n );"
+    $('#code').text(start + column + primaryKey + end);
 
 
-}
-
-
-
+  }
 </script>
