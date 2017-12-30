@@ -30,7 +30,7 @@
       height: 35px;
     }
 
-      #info-db .info {
+    #info-db .info {
       background: transparent;
       outline: 0;
       border: 0;
@@ -43,13 +43,12 @@
     #info-db {
       margin-bottom: 25px;
     }
-    #primary_key{
-      margin-top: 20px;
-    }
-     #table_name {
 
-       margin-bottom: 25px;
-     }
+    #table_name {
+
+      margin-bottom: 25px;
+    }
+
   </style>
 </head>
 
@@ -60,8 +59,7 @@
       <li class="breadcrumb-item active">Sequel Files</li>
     </ol>
     <div id="info-db">
-      SQL File Name: <input type="text" class="info" autofocus="true"><br />
-      Number of Columns: <input type="text" class="info" id="num_columns"/><br />
+      SQL File Name: <input type="text" class="info" autofocus="true"><br /> Number of Columns: <input type="text" class="info" id="num_columns" /><br />
     </div>
     CREATE TABLE IF NOT EXISTS ` <input type="text" placeholder="table_name" id="table_name" /> ` (<br />
     <div id="columns">
@@ -70,6 +68,9 @@
       <option></option>
       <option>varchar(255)</option>
       <option>int(11)</option>
+      <option>mediumint(8)</option>
+      <option>smallint(6)</option>
+      <option>tinyint(4)</option>
       <option>DATE</option>
       <option>TIMESTAMP</option>
       <option>DATETIME</option>
@@ -79,11 +80,10 @@
       <option>NOT NULL</option>
       <option>UNIQUE</option>
     </select>
-     <input type="checkbox"> AUTO_INCREMENT</label><br />
+      <input type="checkbox"> AUTO_INCREMENT</label><br />
     </div>
     <br /> PRIMARY KEY ( ` <input type="text" id="primary_key" placeholder="key_name"> ` )
-    <br /> <br />
-    );
+    <br /> <br /> );
     <br />
     <textarea class="form-control" id="code"></textarea>
     <button type="button" class="btn btn-primary" name="button" onclick="code()">Update</button>
@@ -95,46 +95,49 @@
 </html>
 
 <script>
+  $(document).ready(function() {
 
-$(document).ready(function(){
+    $('#num_columns').on("focusout", function() {
 
-  $('#num_columns').on("focusout", function(){
-
-    $('.new_columns').remove();
+      $('.new_columns').remove();
 
       const num = $('#num_columns').val();
 
-      for ( var i = 0; i < num; i++) {
+      for (var i = 0; i < num; i++) {
 
-          $('#columns').append(
+        $('#columns').append(
 
-          "<div class=\"new_columns\">"
-          +"<input type=\"text\" id=\"column_name\" placeholder=\"column_name\"> `"
-          +"<select class=\"form-control\" id=\"data_type\">"
-          +"<option></option>"
-          +"<option>varchar(255)</option>"
-          +"<option>int(11)</option>"
-          +"<option>DATE</option>"
-          +"<option>TIMESTAMP</option>"
-          +"<option>DATETIME</option>"
-          +"</select>"
-          +"<select class=\"form-control\" id=\"data_contraints\">"
-          +"<option></option>"
-          +"<option>NOT NULL</option>"
-          +"<option>UNIQUE</option>"
-          +"</select>"
-          +"<input type=\"checkbox\"> AUTO_INCREMENT</label></div><br />");
+          "<div class=\"new_columns\">" +
+          "` <input type=\"text\" id=\"column_name\" placeholder=\"column_name\"> `" +
+          "<select class=\"form-control\" id=\"data_type\">" +
+          "<option></option>" +
+          "<option>varchar(255)</option>" +
+          "<option>int(11)</option>" +
+          "<option>DATE</option>" +
+          "<option>TIMESTAMP</option>" +
+          "<option>DATETIME</option>" +
+          "</select>" +
+          "<select class=\"form-control\" id=\"data_contraints\">" +
+          "<option></option>" +
+          "<option>NOT NULL</option>" +
+          "<option>UNIQUE</option>" +
+          "</select>");
       }
-  })
 
-});
+
+
+
+    })
+
+  });
+
   function code() {
 
     const table_name = $('#table_name').val();
     const column_name = $('#column_name').val();
     const data_type = $('#data_type option:selected').text();
     const constraint = $('#data_contraints option:selected').text();
-    const primary_key = $('#primary_key').val()
+    const primary_key = $('#primary_key').val();
 
     var start = "CREATE TABLE IF NOT EXISTS `" + table_name + "` (\n";
     var column = "`" + column_name + "` " + data_type + " " + constraint + "\n";
@@ -145,3 +148,14 @@ $(document).ready(function(){
 
   }
 </script>
+
+<!--
+
+CAN ENTER COLUMNS THEN CLICK Update
+
+RESULTS IN INPUT ARE CLEARED, COLUMS ARE UPDATED UNTILL A NEW TABLE IS MADE
+
+
+
+FOR DEFAULT CONSTRAINT, USE MODAL, TAKE DATA FROM MODAL AND INPUT TO VAR?
+-->
