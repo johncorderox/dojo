@@ -80,7 +80,7 @@
       <option>NOT NULL</option>
       <option>UNIQUE</option>
     </select>
-      <input type="checkbox"> AUTO_INCREMENT</label><br />
+      <input type="checkbox" id="auto_increment" value="AUTO_INCREMENT"> AUTO_INCREMENT</label><br />
     </div>
     <br /> PRIMARY KEY ( ` <input type="text" id="primary_key" placeholder="key_name"> ` )
     <br /> <br /> );
@@ -124,9 +124,6 @@
           "</select>");
       }
 
-
-
-
     })
 
   });
@@ -140,11 +137,17 @@
     const primary_key = $('#primary_key').val();
 
     var start = "CREATE TABLE IF NOT EXISTS `" + table_name + "` (\n";
-    var column = "`" + column_name + "` " + data_type + " " + constraint + "\n";
-    var primaryKey = "PRIMARY KEY (`" + primary_key + "`)";
+    var column = "`" + column_name + "` " + data_type + " " + constraint;
+    var primaryKey = "\n PRIMARY KEY (`" + primary_key + "`)";
     var end = "\n );"
-    $('#code').text(start + column + primaryKey + end);
 
+    if ($('#auto_increment').prop("checked") == true) {
+
+            column = column + " AUTO_INCREMENT,";
+
+    }
+
+    $('#code').text(start + column + primaryKey + end);
 
   }
 </script>
