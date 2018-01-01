@@ -86,8 +86,8 @@
     <br /> <br /> );
     <br />
     <textarea class="form-control" id="code"></textarea>
-    <button type="button" class="btn btn-primary" name="button" onclick="code()">Update</button>
-    <button type="button" class="btn btn-danger" name="button">Reset</button>
+    <button type="button" class="btn btn-primary" onclick="code()">Update</button>
+    <button type="button" class="btn btn-danger" onclick="reset()">Reset</button>
   </div>
 
 </body>
@@ -138,18 +138,27 @@
 
     var start = "CREATE TABLE IF NOT EXISTS `" + table_name + "` (\n";
     var column = "`" + column_name + "` " + data_type + " " + constraint;
-    var primaryKey = "\n PRIMARY KEY (`" + primary_key + "`)";
-    var end = "\n );"
+    var primaryKey = "\n PRIMARY KEY (`" + primary_key + "`) \n ); \n\n";
+
 
     if ($('#auto_increment').prop("checked") == true) {
 
-            column = column + " AUTO_INCREMENT,";
+            column = column + " AUTO_INCREMENT";
 
     }
 
-    $('#code').text(start + column + primaryKey + end);
+
+    $('#code').append(start + column +","+ primaryKey);
 
   }
+
+
+  function reset() {
+
+    $('#code').text('');
+  }
+
+
 </script>
 
 <!--
