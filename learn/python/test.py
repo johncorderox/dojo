@@ -1,4 +1,10 @@
-num = [1,2,3,4,5]
+word = ['hello','world','my','name','is','Anna']
+char = 'o'
+new_list = []
 
-for n in num:
-    print n
+def character(word,char):
+	if char in word:
+		char.append(new_list)
+	print new_list
+
+character(word,char)

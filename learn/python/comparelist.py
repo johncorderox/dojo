@@ -4,16 +4,7 @@ def compareLists(one, two):
     else:
         print "The list DOES NOT MATCH"
 
-if x in 2:
-    fsdfdsf
-    fsdfsd
 
-
-
-while (x != 0):
-    dfdsfdsa
-    fasdfasdfsa
-    fasda
 
 a = [1,2,5,6,2]
 b = [1,2,5,6,2]

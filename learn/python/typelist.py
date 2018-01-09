@@ -22,12 +22,14 @@ def typelist(val):
      total = 0
      newarr = []
      for x in val:
-        if(isinstance(x, int)):
+        if(isinstance(x, int) or isinstance(x, float)):
             total += x
-            print "@@@ The total is ", total
         else:
-            newarr.append(x)
-            print "String ", x
+         newarr.append(x)
+         print "String ", x
+
+     print "@@@ The total is ", total
+
 
 
 
