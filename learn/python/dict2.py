@@ -1,9 +1,7 @@
 def dic(val):
-    count = 1
     for first,last in val.items():
-        for value in val:
-            
-            count += 1
+        for value in last:
+            print value["first_name"] , value["last_name"]
 
 
 users = {
@@ -20,3 +18,20 @@ users = {
  }
 
 dic(users)
+
+
+#
+# for key, data in context.items():
+#      #print data
+#      for value in data:
+#           print "Question #", value["id"], ": ", value["content"]
+#           print "----"
+#
+# context = {
+#   'questions': [
+#    { 'id': 1, 'content': 'Why is there a light in the fridge and not in the freezer?'},
+#    { 'id': 2, 'content': 'Why don\'t sheep shrink when it rains?'},
+#    { 'id': 3, 'content': 'Why are they called apartments when they are all stuck together?'},
+#    { 'id': 4, 'content': 'Why do cars drive on the parkway and park on the driveway?'}
+#   ]
+#  }
