@@ -24,12 +24,12 @@ class Dog(Animal):
 class Dragon(Animal):
     def __init__(self, health=0):
         self.health = 170
+        super(Dragon, self).__init__()
+        print "I am a dragon"
+
     def fly(self):
         self.health -= 10
         return self
-    def display_health():
-        super(Dragon, self).display_health()
-        print "I am a Dragon"
 
 
 new_dog = Dog()
