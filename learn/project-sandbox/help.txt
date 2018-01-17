@@ -1,0 +1,401 @@
+First Steps:
+Build a Python+Flask application which will run on a localhost. It needs to be able to:
+ 1) prompt a user for a username+password
+ 2) prompt the user to select one of three pre-loaded advertisements
+ 3) after watching, let the user select from:
+     a) checking the weather
+     b) checking the news
+     c) search and play a youtube video
+ 4) sign off
+
+[05-04-17]
+---------------------------------------
+[REF]
+https://code.tutsplus.com/tutorials/creating-a-web-app-from-scratch-using-python-flask-and-mysql--cms-22972
+
+http://flask.pocoo.org/docs/0.12/quickstart/
+---------------------------------------
+
+#-- Flask --#
+
+::  virtualenv - Install to contain Flask
+	$ sudo apt-get install python-virtualenv
+
+	- In your project folder, create venv
+		$ virtualenv <venvname>
+	- When you want to work on a project, activate venv
+		$ . <venvname>/bin/activate
+	- To end venv
+		$ deactivate
+
+::  Basics
+	- Create script
+		from flask import Flask
+		app = Flask(__name__)
+
+		@app.route('/')
+		def hello_world():
+			return 'Hello, World!'
+
+	$ export FLASK_APP=app.py
+	$ flask run
+
+	-or-
+	With the function
+	if __name__ == "__main__":
+		app.run()
+
+	just do $ python app.py
+
+::  Externally visible server
+	$ flask run --host=0.0.0.0
+
+::  Enable debug mode
+	$ export FLASK_DEBUG=1
+	$ flask run
+
+::  Routing
+	- Use route() to bind a function to a URL
+		@app.route('/')
+		def index():
+			return 'Index Page'
+
+		@app.route('/hello')
+		def hello():
+			return 'Hello, World'
+
+::  Variable Rules
+	- Add variable parts to the URL with <brackets>
+	- Specify a type by using a converter <converter:variable_name>
+
+	Converter Types
+	------------------------------------------------------
+	string 	accepts any text without a slash (the default)
+	int 	accepts integers
+	float 	like int but for floating point values
+	path 	like the default but also accepts slashes
+	any 	matches one of the items provided
+	uuid 	accepts UUID strings
+
+	[Example]
+	@app.route('/user/<username>')
+	def show_user_profile(username):
+		# show the user profile for that user
+		return 'User %s' % username
+
+	@app.route('/post/<int:post_id>')
+	def show_post(post_id):
+		# show the post with the given id, the id is an integer
+		return 'Post %d' % post_id
+
+::  Unique URLs/Redirection Behavior
+	- URL rules based on Werkzeug's routing module.
+	- Ensure beautiful and unique URLs
+
+	#- Can access page with or without trailing slash if it's created with a trailing slash
+
+	@app.route('/projects/')
+	def projects():
+		return 'The project page'
+
+	#- Can't access with a trailing slash if none is defined
+
+	@app.route('/about')
+	def about():
+		return 'The about page'
+
+--- Templates
+	- Use:
+		from flask import Flask, render_template
+
+		-and-
+		def main():
+			return render_template('index.html')
+
+	- Save templates in folder 'templates'
+
+
+#-- Database --#
+
+::  MySQL Backend <for tutorial>
+
+--- STEP 1: Setting up a database
+
+	$ mysql -u uname -p pw
+
+CREATE DATABASE CUAround;
+
+	- Once DB is created, create table called 'tbl_user'
+	[!] Check those indentz
+
+CREATE TABLE `CUAround`.`tbl_user` (
+  `user_id` BIGINT NULL AUTO_INCREMENT,
+  `user_name` VARCHAR(45) NULL,
+  `user_username` VARCHAR(45) NULL,
+  `user_password` VARCHAR(45) NULL,
+  PRIMARY KEY (`user_id`));
+
+	- Using 'Stored procedures' for interacting with the db.
+	- Create stored procedure called 'sp_createUser' to sign up a user
+	- When creating stored procedure to create a user in 'tbl_user', check if a username exists.
+
+	ex. 'sp_createUser'......................................
+
+USE CUAround;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createUser`(
+	IN p_name VARCHAR(20),
+	IN p_username VARCHAR(20),
+	IN p_password VARCHAR(100)
+)
+BEGIN
+	if ( select exists (select 1 from tbl_user where user_username = p_username) ) THEN select 'Username Exists !!';
+
+	ELSE
+
+		insert into tbl_user
+		(
+		    user_name,
+		    user_username,
+		    user_password
+		)
+		values
+		(
+		    p_name,
+		    p_username,
+		    p_password
+		);
+
+	END IF;
+END$$
+DELIMITER ;
+
+	EOF.......................................................
+
+--- STEP 2: Creating a signup interface
+	- Adding signup.html to /templates
+	- Adding signup.css to root folder
+	- Adding this to app.py
+	@app.route('/showSignUp')
+	def showSignUp():
+		return render_template('signup.html')
+
+--- STEP 3: Implementing a sign up method.....................
+	- Server-side method for UI to interact with DB.
+	[+] Add to app.py:
+
+	@app.route('/signUp',methods=['POST'])
+	def signUp():
+
+		# Read values from UI
+		_name = 	request.form['inputName']
+		_email = 	request.form['inputEmail']
+		_password = request.form['inputPassword']
+
+		# Validate the recieved values
+		if _name and _email and _password:
+			return json.dumps({'html':'<span>Thanks ! [^_^]</span>'})
+		else:
+			return json.dumps({'html':'<span>Need more info [-_-]</span>'})
+
+--- STEP 4: Creating a signup request
+	- Using jQuery AJAX to send signup request to the python method
+	https://code.jquery.com/jquery-3.2.1.js
+	- Add to app/static/js
+	- Add jQuery button snippet to signup.html
+	[?] Not sure if my script is in the right place, but we'll see!
+
+--- STEP 5: Call MySQL Stored Procedure
+	- Install Flask-MySQL $ pip install flask-mysql
+	[+] To app.py
+	See: #[+] S5
+
+Full Source: https://github.com/jay3dec/PythonFlaskMySQLApp---Part-1
+
+======================================================================
+#-- Part 1 - Prompt for username + password --#
+
+
+
+#-- Part 2 - Select from one of three pre-loaded ads --#
+[!] Use jw player for hosted ads?
+
+
+#-- Part 4- Sign Off --#
+
+
+
+#Troubleshooting................................................
+
+If root pw is not working
+
+$ sudo systemctl stop mysql
+$ sudo mysqld_safe --skip-grant-tables --skip-networking &
+$ sudo mysql -u root
+
+
+
+mysql> FLUSH PRIVILEGES;
+mysql>	UPDATE mysql.user SET authentication_string = PASSWORD('<yourpassword>') WHERE User = 'root' AND Host = 'localhost';
+
+::  Identify process to kill if it's not working
+	$ ps -ef | grep myself
+	$ sudo kill <PID>
+
+::  Reassigning password
+	mysql> SET PASSWORD FOR
+	    -> 'user'@'localhost' = PASSWORD('mypass');
+
+::  Check port configs
+	mysql> SHOW GLOBAL VARIABLES LIKE 'PORT';
+	$ sudo netstat -tln
+		- Should see it listening on 3306
+
+[05-05-17]
+
+[!] Issue: App not posting to MySQL DB
+
+Good Linxx.........................................
+http://flask-mysqldb.readthedocs.io/en/latest/
+...................................................
+
+- Tried to download flask-mysqldb
+	"Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-9kFqHK/mysqlclient/"
+- Means operation not permitted
+	"EnvironmentError: mysql_config not found"
+- Installed to get mysql_config
+	sudo apt-get install libmysqlclient-dev
+- Now a new error
+	_mysql.c:40:20: fatal error: Python.h: No such file or directory
+- Added mysql to the path
+	export PATH=$PATH:/usr/local/mysql/bin
+- Someone suggested python-dev
+	sudo apt-get install python-dev
+[!!!] This worked!
+
+Another thing I did...............
+$ pip install --upgrade setuptools
+$ pip install ez_setup
+$ easy_install -U setuptools
+..................................
+
+- Now I need to redo the app.py functions.
+
+[x] Okay so I think I figured it out, I need to use these configurations in flask-mysql to make this work
+
+MYSQL_DATABASE_HOST 		default is â€˜localhostâ€™
+MYSQL_DATABASE_PORT 		default is 3306
+MYSQL_DATABASE_USER 		default is None
+MYSQL_DATABASE_PASSWORD 	default is None
+MYSQL_DATABASE_DB 			default is None
+MYSQL_DATABASE_CHARSET 		default is â€˜utf-8â€™
+
+[x] Database isn't listening on a port
+	SHOW GLOBAL VARIABLES LIKE 'PORT';
+	0
+	- Restarted and now it works
+
+[x] I think now my issue lies in my sign_up function and how it's called....
+	- Wow, so I just didn't put the fricken script src in the document....
+
+	UnboundLocalError: local variable 'cursor' referenced before assignment
+	127.0.0.1 - - [05/May/2017 12:23:46] "POST /sign_up HTTP/1.1" 500 -
+
+[+] Added GET to the POST methods in the sign_up function
+	And moved the cursor to before the if vars are present function
+
+[?] What does this mean?
+	127.0.0.1 - - [05/May/2017 12:30:48] "GET /SignUp HTTP/1.1" 200 -
+/home/yuu/Documents/CUAround/venv/local/lib/python2.7/site-packages/pymysql/cursors.py:271: Warning: (1265, u"Data truncated for column 'p_password' at row 1")
+  self._query(q)
+127.0.0.1 - - [05/May/2017 12:30:59] "POST /sign_up HTTP/1.1" 200 -
+
+	- All the posts seem to be working just fine now....
+
+
+
+
+QUERYING MYSQL..................
+
+MariaDB [(none)]> USE CUAround;
+
+MariaDB [CUAround]> SHOW TABLES;
++--------------------+
+| Tables_in_CUAround |
++--------------------+
+| tbl_user           |
++--------------------+
+
+MariaDB [CUAround]> SELECT * FROM tbl_user
+    -> ;
++---------+-----------+---------------+----------------------+
+| user_id | user_name | user_username | user_password        |
++---------+-----------+---------------+----------------------+
+|       1 | a         | a@a.com       | pbkdf2:sha256:50000$ |
+|       2 | Yessir    | hello@ok.com  | pbkdf2:sha256:50000$ |
++---------+-----------+---------------+----------------------+
+
+
+[?] Accidentally installed unroll, what is it??
+
+
+--------------------------------------
+::  Made Log in Page
+	- Need to make
+		- backend script in app.py [Lookup]
+		- jQuery
+		Also:
+		- Forgot Password? Option
+
+Added Authenticate function, but i think the truncated password error is whats messing it up
+http://127.0.0.1:5000/Authenticate?UserName=another1@yas.org&Password=another1
+
+------------------------------------------------------
+[05-06-17]
+Important Links
+https://flask-mysql.readthedocs.io/en/latest/#
+https://code.tutsplus.com/tutorials/creating-a-web-app-from-scratch-using-python-flask-and-mysql--cms-22972
+http://flask.pocoo.org/docs/0.12/quickstart/
+
+
+[05-07-17]
+[GOAL] Build Login page with user authentication
+
+REF:
+	https://codereview.stackexchange.com/questions/110679/simple-login-system-using-python-flask-and-mysql
+	https://pythonspot.com/en/login-authentication-with-flask/		# Uses SQLchemy for SQL backend
+
+- Login page currently based on sign up. An authentication function exists from a template, but it hasn't worked with my DB. Probably need to configure to work with it.
+
+Things to Fix.............................
+[!] Password Data truncated
+	Warning: (1265, u"Data truncated for column 'p_password' at row 1")
+
+::  The issue seems to be that the salt / hash combo is longer than the 20 chars I set for the max value of the DB. Using SHA256
+	Info: http://flask.pocoo.org/snippets/54/
+
+..........................................
+
+I keep messing this one up..gotta paste like this
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createUser`(IN p_name VARCHAR(20),IN p_username VARCHAR(20),IN p_password VARCHAR(100))
+BEGIN if ( select exists (select 1 from tbl_user where user_username = p_username) ) THEN select 'Username Exists !!';
+ELSE insert into tbl_user (user_name,user_username,user_password) values (p_name, p_username,p_password);
+END IF;
+END$$
+DELIMITER ;
+
+Is the limit at 45 chars?? this is the password 'anotherone'
+pbkdf2:sha256:50000$m4kYh8sT$fd96eab31524c74d
+
+[!] After removing the salting procedure, I got it to post without fucking it up badly
+	- Still need to salt, so i should use a sha256 module
+
+::  Login now works!
+	http://127.0.0.1:5000/Authenticate?UserName=another1@yas.org&Password=another1
+
+::  Interfacing to login page
+	127.0.0.1 - - [08/May/2017 14:41:23] "POST /Authenticate HTTP/1.1" 405 -
+	127.0.0.1 - - [08/May/2017 14:41:50] "GET /Authenticate?UserName=another1@yas.org&Password=another1 HTTP/1.1" 200 -
