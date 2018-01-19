@@ -37,8 +37,3 @@ FROM cities
 JOIN countries
 ON countries.id = cities.country_id
 WHERE district = "Buenos Aires" AND countries.population > 500000
-
-SELECT COUNT(countries.name) as countries, countries.region
-FROM countries
-GROUP BY (countries.region)
-ORDER BY countries DESC

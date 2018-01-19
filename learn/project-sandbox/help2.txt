@@ -1,0 +1,170 @@
+venv activation
+$ . venv/bin/activate
+
+[05-08-17]
+[GOAL] Build Login page with user authentication
+
+REF:
+	https://codereview.stackexchange.com/questions/110679/simple-login-system-using-python-flask-and-mysql
+	https://pythonspot.com/en/login-authentication-with-flask/		# Uses SQLchemy for SQL backend
+
+- Login page currently based on sign up. An authentication function exists from a template, but it hasn't worked with my DB. Probably need to configure to work with it.
+
+Things to Fix.............................
+[!] Password Data truncated
+	Warning: (1265, u"Data truncated for column 'p_password' at row 1")
+
+::  The issue seems to be that the salt / hash combo is longer than the 20 chars I set for the max value of the DB. Using SHA256
+	Info: http://flask.pocoo.org/snippets/54/
+
+..........................................
+
+I keep messing this one up..gotta paste like this
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_createUser`(IN p_name VARCHAR(20),IN p_username VARCHAR(20),IN p_password VARCHAR(100))
+BEGIN if ( select exists (select 1 from tbl_user where user_username = p_username) ) THEN select 'Username Exists !!';
+ELSE insert into tbl_user (user_name,user_username,user_password) values (p_name, p_username,p_password);
+END IF;
+END$$
+DELIMITER ;
+
+
+Is the limit at 45 chars?? this is the password 'anotherone'
+pbkdf2:sha256:50000$m4kYh8sT$fd96eab31524c74d
+
+[!] After removing the salting procedure, I got it to post without fucking it up badly
+	- Still need to salt, so i should use a sha256 module
+
+::  Login now works!
+	http://127.0.0.1:5000/Authenticate?UserName=porche@cat.org&Password=porche
+
+::  Interfacing to login page
+	127.0.0.1 - - [08/May/2017 14:41:23] "POST /Authenticate HTTP/1.1" 405 -
+	127.0.0.1 - - [08/May/2017 14:41:50] "GET /Authenticate?UserName=another1@yas.org&Password=another1 HTTP/1.1" 200 -
+
+[05-09-17]
+Logic Flow
+
+Index
+> Signup
+	> Thank you for signing up, you are now being redirected
+		> Logged in page (ads)
+			> Dashboard
+> Login
+	> Logged in page (ads)
+		> Dashboard (later)
+
+do a query and return
+cur = mysql.connection.cursor()
+rv = cur.execute('''QUERY''')
+return rv
+
+[+] Okay now I got the app to post and log in and redirect to a splash page, but the URL stays the same, so I need to make a secondary page to redir to.
+
+[?] How do I get the logged in successfully thing to trigger the splash page with user info?
+	- Should I set a cookie?
+
+Session Management----------------------------------------
+https://flask-login.readthedocs.io/en/latest/
+http://flask.pocoo.org/snippets/category/sessions/
+https://pythonhosted.org/Flask-Session/
+----------------------------------------------------------
+[05-11-17]
+
+[TODO].........................................................................
+::  Logout auth feature
+
+::  App Page
+	- Ad
+	- Apps (Do python requests)
+		- Weather
+		- News
+		- Youtube - How to handle stream? Download first or stream?
+
+[?] What distros are in place that can work with media and GPU acceleration better?
+...............................................................................
+#-- Logout Auth --#
+
+--- Flask-login
+	https://flask-login.readthedocs.io/en/latest/
+	pip install flask-login
+
+::  The login manager module
+	login_manager = LoginManager()
+	login_manager.init_app(app)
+
+::  user_loader callback module
+	- Loads user object (unicode) from User ID
+	EX:
+		@login_manager.user_loader
+		def load_user(user_id):
+			return User.get(user_id)
+
+	[!] Should return None, not raise an exception, if the ID is not valid.
+
+::  User Class Properties and methods
+	[!] Need to define a user class to work with them
+	- Return True
+		is_authenticated
+		is_active
+	- Return Unicode ID
+		get_id()
+
+
+::  LOGIN EX:
+
+	@app.route('/login', methods=['GET', 'POST'])
+	def login():
+		# Here we use a class of some kind to represent and validate our
+		# client-side form data. For example, WTForms is a library that will
+		# handle this for us, and we use a custom LoginForm to validate.
+		form = LoginForm()
+		if form.validate_on_submit():
+		    # Login and validate the user.
+		    # user should be an instance of your `User` class
+		    login_user(user)
+
+		    flask.flash('Logged in successfully.')
+
+		    next = flask.request.args.get('next') # MUST VALIDATE THIS!
+		    # is_safe_url should check if the url is safe for redirects.
+		    # See http://flask.pocoo.org/snippets/62/ for an example.
+		    if not is_safe_url(next):
+		        return flask.abort(400)
+
+		    return flask.redirect(next or flask.url_for('index'))
+		return flask.render_template('login.html', form=form)
+
+::  Calling the user vars
+
+	{% if current_user.is_authenticated %}
+	  Hi {{ current_user.name }}!
+	{% endif %}
+
+::  Pages that require user login can be handled with:
+
+	@app.route("/settings")
+	@login_required
+	def settings():
+		pass
+
+::  When the user is ready to log out:
+
+	@app.route("/logout")
+	@login_required
+	def logout():
+		logout_user()
+		return redirect(somewhere)
+
+[!] Example Src: https://github.com/maxcountryman/flask-login
+	- Check logintest.py, this works!
+
+::  Info on how flask-login/mysql interface works
+	http://stackoverflow.com/questions/12075535/flask-login-cant-understand-how-it-works
+
+[!] Okay so now I found flask-security, which handles all the stuff I need
+	https://pythonhosted.org/Flask-Security/
+	- Uses SQLAlchemy
+	https://pypi.python.org/pypi/Flask-SQLAlchemy
+	https://pypi.python.org/pypi/SQLAlchemy/1.1.9

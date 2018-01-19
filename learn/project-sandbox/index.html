@@ -137,7 +137,7 @@
         $('#columns').append(
 
           "<div class=\"new_columns\">" +
-          "` <input type=\"text\" id=\"column_name\" placeholder=\"column_name\"> `" +
+          "` <input type=\"text\" id=\"column_name2\" placeholder=\"column_name\"> `" +
           "<select class=\"form-control\" id=\"data_type\">" +
           "<option></option>" +
           "<option>varchar(255)</option>" +
@@ -159,30 +159,59 @@
 
     });
 
+    $('#update').on("click", function(){
+
+      const table_name = $('#table_name').val();
+      const column_name = $('#column_name').val();
+      const data_type = $('#data_type option:selected').text();
+      const constraint = $('#data_contraints option:selected').text();
+      const primary_key = $('#primary_key').val();
+
+      var start = "CREATE TABLE IF NOT EXISTS `" + table_name + "` (\n";
+      var column = "`" + column_name + "` " + data_type + " " + constraint;
+      var primaryKey = "\n PRIMARY KEY (`" + primary_key + "`) \n ); \n\n";
+
+
+      if ($('#auto_increment').prop("checked") == true) {
+
+        column = column + " AUTO_INCREMENT";
+
+      }
+
+
+      $('#code').append(start + column + "," + primaryKey);
+
+      for ( var i = 0; i <= $("#num_columns").val(); i++) {
+
+          $()
+
+      }
+    });
+
 
   });
 
   function code() {
 
-    const table_name = $('#table_name').val();
-    const column_name = $('#column_name').val();
-    const data_type = $('#data_type option:selected').text();
-    const constraint = $('#data_contraints option:selected').text();
-    const primary_key = $('#primary_key').val();
-
-    var start = "CREATE TABLE IF NOT EXISTS `" + table_name + "` (\n";
-    var column = "`" + column_name + "` " + data_type + " " + constraint;
-    var primaryKey = "\n PRIMARY KEY (`" + primary_key + "`) \n ); \n\n";
-
-
-    if ($('#auto_increment').prop("checked") == true) {
-
-      column = column + " AUTO_INCREMENT";
-
-    }
-
-
-    $('#code').append(start + column + "," + primaryKey);
+    // const table_name = $('#table_name').val();
+    // const column_name = $('#column_name').val();
+    // const data_type = $('#data_type option:selected').text();
+    // const constraint = $('#data_contraints option:selected').text();
+    // const primary_key = $('#primary_key').val();
+    //
+    // var start = "CREATE TABLE IF NOT EXISTS `" + table_name + "` (\n";
+    // var column = "`" + column_name + "` " + data_type + " " + constraint;
+    // var primaryKey = "\n PRIMARY KEY (`" + primary_key + "`) \n ); \n\n";
+    //
+    //
+    // if ($('#auto_increment').prop("checked") == true) {
+    //
+    //   column = column + " AUTO_INCREMENT";
+    //
+    // }
+    //
+    //
+    // $('#code').append(start + column + "," + primaryKey);
 
   }
 
