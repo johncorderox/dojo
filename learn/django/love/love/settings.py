@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.blogs',
     'apps.time_display',
+    'apps.random_word',
+    'apps.survey',
+    'apps.session_words',
 ]
 
 MIDDLEWARE = [

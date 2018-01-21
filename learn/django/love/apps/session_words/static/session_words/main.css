@@ -1,0 +1,12 @@
+#left {
+  display: inline-block;
+  width: 300px;
+  height: 500px;
+}
+#right {
+  display: inline-block;
+  width: 300px;
+  height: 600px;
+  vertical-align: top;
+  margin-top: 30px;
+}
