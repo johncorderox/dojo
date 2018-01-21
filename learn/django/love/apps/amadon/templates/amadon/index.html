@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Amadon</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>Amadon Store</h1>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dojo T Shirt</td>
+        <td>$19.99</td>
+        <td>
+          <form action='/amadon/buy' method='post'>
+          {% csrf_token %}
+          <select name='quantity'>
+             <option>1</option>
+             <option>2</option>
+             <option>3</option>
+          </select>
+          <input type='hidden' name='product_id' value='1015' />
+          <input type='submit' value='Buy!' />
+        </form>
+        </td>
+      </tr>
+      <tr>
+        <td>Dojo Sweater</td>
+        <td>$29.99</td>
+        <td>
+          <form action='/amadon/buy' method='post'>
+          {% csrf_token %}
+          <select name='quantity'>
+             <option>1</option>
+             <option>2</option>
+             <option>3</option>
+          </select>
+          <input type='hidden' name='product_id' value='1016' />
+          <input type='submit' value='Buy!' />
+        </form>
+        </td>
+      </tr>
+      <tr>
+        <td>Dojo Cup</td>
+        <td>$4.99</td>
+        <td>
+          <form action='/amadon/buy' method='post'>
+          {% csrf_token %}
+          <select name='quantity'>
+             <option>1</option>
+             <option>2</option>
+             <option>3</option>
+          </select>
+          <input type='hidden' name='product_id' value='1017' />
+          <input type='submit' value='Buy!' />
+        </form>
+        </td>
+      </tr>
+      <tr>
+        <td>Algorithm Book</td>
+        <td>$49.99</td>
+        <td>
+          <form action='/amadon/buy' method='post'>
+          {% csrf_token %}
+          <select name='quantity'>
+             <option>1</option>
+             <option>2</option>
+             <option>3</option>
+          </select>
+          <input type='hidden' name='product_id' value='1018' />
+          <input type='submit' value='Buy!' />
+        </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </body>
+</html>

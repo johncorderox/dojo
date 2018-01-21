@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'apps.random_word',
     'apps.survey',
     'apps.session_words',
+    'apps.amadon',
 ]
 
 MIDDLEWARE = [
