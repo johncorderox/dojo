@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'apps.survey',
     'apps.session_words',
     'apps.amadon',
+    'apps.gold',
+    'apps.user_login',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Gold</title>
+  </head>
+  <body>
+    <h2>Your Gold: {{request.session.gold}}</h2>
+    <br />
+    <h4>Farm</h4><br />
+    <p>
+      earns 10-20 gold
+    </p>
+    <form action="process_money" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="type" value="farm" />
+      <button type="submit">Find Gold</button>
+    </form>
+    <h4>Cave</h4><br />
+    <p>
+      earns 5-10 gold
+    </p>
+    <form action="process_money" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="type" value="cave" />
+      <button type="submit">Find Gold</button>
+    </form>
+    <h4>House</h4><br />
+    <p>
+      earns 2-5 gold
+    </p>
+    <form action="process_money" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="type" value="house" />
+      <button type="submit">Find Gold</button>
+    </form>
+    <h4>Casino</h4><br />
+    <p>
+      earns 0-50 gold
+    </p>
+    <form action="process_money" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="type" value="casino" />
+      <button type="submit">Find Gold</button>
+    </form>
+    <br />
+    <hr />
+    <h2>Activities</h2><br />
+    {% for key in request.session.chat %}<br />
+      {% if key.type != 'casino' %}
+        Earned {{key.num}} gold from the {{key.type}} ! {{key.time}}
+        {% endif %}
+      {% if key.type == 'casino' %}
+      Entered a casino and got {{key.num}} gold {{key.time}}
+      {% endif %}
+  {% endfor %}
+  </body>
+</html>
