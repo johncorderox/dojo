@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'apps.amadon',
     'apps.gold',
     'apps.user_login',
+    'apps.dojo_ninjas',
+    'apps.book_authors',
+    'apps.likes',
 ]
 
 MIDDLEWARE = [
