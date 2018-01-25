@@ -19,3 +19,6 @@ class Ninja(models.Model):
     dojo = models.ForeignKey(Dojo, related_name="ninjas")
     def __repr__(self):
         return "<Blog object: {} {} {}>".format(self.first_name, self.last_name, self.dojo_id)
+# Get all ninjas that belong to the first dojo
+
+Ninja.objects.get(dojo_id = 1)

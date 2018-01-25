@@ -24,7 +24,7 @@ class Book(models.Model):
     def __repr__(self):
         return "<Blog object: {} {}".format(self.name, self.desc)
 
-
+Book.objects.get(id=1).likes.all()
 
 # this_user = User.objects.get(id=1)
 # this_book = Book.objects.first()

@@ -37,17 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.blogs',
     'apps.time_display',
-    'apps.random_word',
-    'apps.survey',
-    'apps.session_words',
-    'apps.amadon',
-    'apps.gold',
-    'apps.user_login',
-    'apps.dojo_ninjas',
-    'apps.book_authors',
-    'apps.likes',
+
 ]
 
 MIDDLEWARE = [

@@ -22,6 +22,24 @@ class Author(models.Model):
     def __repr__(self):
         return "<Blog object: {} {} {}".format(self.first_name, self.last_name, self.email)
 
+Find all the books that the 3rd author is part of
+
+this_author = Author.objects.get(id=3)
+this.author.books.all()
+
+
+
+
+#For the 3rd book, retrieve all the authors
+
+#Book.objects.get(id=3).authors.all()
+
+# For the 2nd book, add the 5th author as one of the authors
+# this_book =Books.objects.get(id=3)
+# this_author = Author.objects.get(id=5)
+# this_author.books.add(this_book)
+#
+
 
 # Assign the first author to the first 2 books
 # this_book = Book.objects.get(id=1)
@@ -50,5 +68,5 @@ class Author(models.Model):
 
 
 
-# 
+#
 # For the 2nd book, add the 5th author as one of the authors

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Root</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <form action="/" method="POST">
+      <h1>Add a new course </h1>
+      {% csrf_token %}
+      Name: <input type="text" name="name" class="form-control"/><br />
+      Description: <textarea class="form-control" name="desc"></textarea><br />
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form><br />
+    <br />
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Courses Name</th>
+        <th>Description</th>
+        <th>Date Added</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    {% for x in data %}
+     {{x.course_name}}
+     {{x.updated_at}}
+     {% endfor %}
+     {% for y in data2 %}
+      {{y.description}}
+      {% endfor %}
+    </table>
+  </body>
+</html>
+<style>
+form {
+  width: 500px;
+  margin-left: 100px;
+}
+
+</style>

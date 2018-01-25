@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^', include('apps.blogs.urls')),
 
 
+
 ]
