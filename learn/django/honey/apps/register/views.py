@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
 from models import *
+from django.contrib import messages
 import bcrypt
 # Create your views here.
 
@@ -20,6 +21,7 @@ def login(request):
             return redirect('/')
 
 def register(request):
+
         password=request.POST['password']
         safe_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
         Users.objects.create(first_name=request.POST['first_name'], last_name=request.POST['last_name'], email = request.POST['email'], password=safe_password)
@@ -27,4 +29,11 @@ def register(request):
 
 
 def success(request):
-    return render(request, 'register/success.html')
+    # check if user is logged in
+    if not 'user_id' in request.session:
+        return redirect('/')
+    else:
+        return render(request, 'register/success.html')
+
+def book_add(request):
+    return render(request, 'register/add.html')

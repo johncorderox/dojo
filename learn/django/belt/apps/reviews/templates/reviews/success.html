@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>success</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  </head>
+  <body>
+    Hello {{request.session.name}}<br /><br />
+    <div id="right-links">
+      <a href="/../books/add">Add Book Review</a>
+      <a href="/logout">Logout</a>
+    </div>
+
+    <div id="recent-book-reviews">
+          <h3>Recent Book Reviews:</h3>
+          {% for x in recent_review %}
+            Review = <a href="books/{{x.book_id}}">{{x.review}}</a><br />
+            Rating = {{x.ratings}}<br />
+            Posted By = <a href="users/{{x.user.id}}">{{x.user.first_name}}</a><br />
+            <hr />
+          {% endfor %}
+    </div>
+
+
+    <div id="other-book-reviews">
+      <h3>Other Book Reviews</h3>
+
+        {% for y in all_reviews %}
+            <a href="books/{{y.id}}">{{y.title}}</a><br />
+        {% endfor %}
+
+    </div>
+  </body>
+</html>
+<style>
+#right-links{
+  float: right;
+}
+#recent-book-reviews{
+  display:inline-block;
+}
+#other-book-reviews{
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 500px;
+  overflow: scroll;
+  height: 300px;
+}
+</style>

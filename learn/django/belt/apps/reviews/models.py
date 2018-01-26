@@ -29,5 +29,7 @@ class Books(models.Model):
 class Review(models.Model):
 	review = models.TextField(max_length=1000)
 	ratings = models.CharField(max_length=5)
-	user = models.ForeignKey(Users)
-	book = models.ForeignKey(Books)
+	user = models.ForeignKey(Users, related_name="user_review")
+	book = models.ForeignKey(Books, related_name="book_review")
+
+    
