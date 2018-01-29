@@ -37,3 +37,6 @@ Book.objects.get(id=1).likes.all()
 #
 # Display the user who uploaded the first book
 # Book.objects.get(id=1).user
+
+
+users.objects.all.likes.book_id = 1
