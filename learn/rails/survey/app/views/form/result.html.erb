@@ -1,0 +1,9 @@
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
+
+<h2>Submitted Information</h2>
+Name: <%= @session_name %> <br />
+Dojo Location: <%= @session_location %><br />
+Language: <%= @session_language %> <br />
+Comment: <%= @session_comment %> <br />

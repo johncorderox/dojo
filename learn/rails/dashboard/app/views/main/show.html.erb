@@ -1,0 +1,26 @@
+<h2><%= @dojo_show.branch %></h2> <a href="/dojos/<%= @dojo_show.id %>/edit">Edit</a>
+<p><%= @dojo_show.street %></p>
+<p><%= @dojo_show.city %></p><p><%= @dojo_show.state %></p>
+<hr />
+<h2>Student Roster</h2>
+<table>
+  <thead>
+    <tr>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Email</td>
+      <td>Actions</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students_show.each do |students| %>
+    <tr>
+      <td><%= students.first_name %></td>
+      <td><%= students.last_name %></td>
+      <td><%= students.email %></td>
+      <td><a href="">Show</a> | <a href="/dojos/<%= @dojo_show.id %>/students/<%= students.id %>">Edit</a> | <a href="">Delete</a></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<a href="/dojos">Home</a> <a style="float: right"href="/dojos/<%= @dojo_show.id%>/students/new">Add Student</a>

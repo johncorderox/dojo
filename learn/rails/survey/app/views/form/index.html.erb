@@ -1,0 +1,9 @@
+<h3>Survey</h3>
+<form action="/action" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  Your Name <input type="text" name="name" value=""><br />
+  Dojo Location <input type="text" name="location" value=""><br />
+  favorite language <input type="text" name="language" value=""><br />
+  comment (optional) <textarea name="comment"></textarea><br />
+  <button type="submit">Submit</button>
+</form>

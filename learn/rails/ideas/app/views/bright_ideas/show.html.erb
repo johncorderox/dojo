@@ -1,0 +1,6 @@
+<div id="ideas_show">
+  <% @show_idea.each do |show_idea| %>
+  <a href=""><%= show_idea.alias %> </a>says:
+  <%= show_idea.idea %><br />
+  <% end %>
+</div>

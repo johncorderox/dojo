@@ -1,0 +1,10 @@
+<p>Users</p>
+<% @users.each do |users| %>
+  <tr><br />
+    <td><%= users.id %></td>
+    <td><%= users.name %></td>
+    <td><%= users.created_at %></td>
+    <td><%= users.updated_at %></td>
+  </tr>
+<% end %><br />
+<br />

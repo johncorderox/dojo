@@ -1,0 +1,12 @@
+<h2>Hi !</h2>
+<form action="/bright_ideas" method="POST">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="text" name="idea" placeholder="Post something witty here..."> <button type="submit">Idea !</button>
+</form>
+
+<div id="ideas">
+  <% @show_ideas.each do |show_ideas| %>
+  <a href="/users/<%= show_ideas.id %>"><%= show_ideas.alias %> </a>says:
+  <%= show_ideas.idea %><br />
+  <% end %>
+</div>

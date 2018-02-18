@@ -1,0 +1,16 @@
+<h2><%= @dojos.branch %>'s <%= @student.first_name %></h2>
+<form class="" action="" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input name="_method" type="hidden" value="patch" />
+  First Name <input type="text" name="student_update[first_name]" value="<%= @student.first_name %>"><br />
+  Last Name <input type="text" name="student_update[last_name]"  value="<%= @student.last_name %>"><br />
+  Email Address <input type="text" name="student_update[email]"  value="<%= @student.email %>"><br />
+  Dojo
+  <select name="student_update[dojo_id]">
+  <option><%= @dojo_belongs.branch %></option>
+   <% @dojo_exclude.each do |dojo| %>
+       <option value="<%= dojo.branch%>"><%= dojo.branch %></option>
+       <% end %>
+     </select><br />
+  <button type="submit">Update</button>
+</form>
