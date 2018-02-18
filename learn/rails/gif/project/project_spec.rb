@@ -1,10 +1,20 @@
-require_relative 'bank' # include our Project class in our spec file
-RSpec.describe BankAccount do
+require_relative 'project'
+RSpec.describe Project do
+
   before(:each) do
-    @bank = BankAccount.new # create a new project and make sure we can set the name attribute
+    @project = Project.new("Name", "Description")
   end
-  it 'has a getter method for retrieving checking balance' do
-    @bank_checking = @bank.checking_balance # this line would fail if our class did not have a setter method
-    expect(@bank_checking).to eq(0) # this line would fail if we did not have a getter or if it did not change the name successfully in the previous line.
+  it "has a getter and setter for name attribute" do
+    expect(@project.name).to eq("Name")
+  end
+  it "has a getter and setter for the description attribute" do
+
+    expect(@project.description).to eq("Description")
+  end
+  it 'has a method elevator_pitch to explain name and description' do
+
+    @project.name = "Name"
+    @project.description = "Description"
+    expect(@project.elevator_pitch).to eq("Name Description")
   end
 end
