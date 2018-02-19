@@ -1,26 +1,24 @@
 class AppleTree
-    attr_accessor :height, :age, :apples
+    attr_accessor :age
+    attr_reader :height, :apples
     def initialize
-        @height = 0
+        @height = 5
         @age = 0
-        @apples = []
+        @apples = 0
     end
 
     def count_apples
-        @apples.count
+        return @apples
     end
 
     def year_gone_by
         @age += 1
+        @height += 3
+        if @age > 3
+          @apples += 1
+        end
     end
-
-    def grow_apples
-		if(@age.between?(4,11))
-			@apples.push("Red Apple")
-		end
-	end
-
     def pick_apples
-        @apples.clear
+        @apples = 0
     end
 end

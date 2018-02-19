@@ -1,20 +1,25 @@
 require_relative 'project'
-RSpec.describe Project do
-
+RSpec.describe AppleTree do
   before(:each) do
-    @project = Project.new("Name", "Description")
+    @tree = AppleTree.new
+    @tree.age = 0
   end
-  it "has a getter and setter for name attribute" do
-    expect(@project.name).to eq("Name")
+  it 'should raise error IF height attribute is changed' do
+    expect{@tree.height = 6}.to raise_error(NoMethodError)
   end
-  it "has a getter and setter for the description attribute" do
 
-    expect(@project.description).to eq("Description")
-  end
-  it 'has a method elevator_pitch to explain name and description' do
+  it 'should not grow apples for the first three years of its life' do
+    @baby_tree = AppleTree.new
+    @baby_tree.year_gone_by
+    @baby_tree.year_gone_by
+    @baby_tree.year_gone_by
+    expect(@baby_tree.count_apples).to eq(0)
+    @baby_tree.year_gone_by
+    @baby_tree.year_gone_by
+    @baby_tree.year_gone_by
+    @baby_tree.year_gone_by
+    expect(@baby_tree.pick_apples).to eq(0)
 
-    @project.name = "Name"
-    @project.description = "Description"
-    expect(@project.elevator_pitch).to eq("Name Description")
   end
+
 end
