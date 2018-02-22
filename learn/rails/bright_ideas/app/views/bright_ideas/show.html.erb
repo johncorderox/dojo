@@ -1,6 +1,20 @@
+<a href=""><%= @show_original_idea %>says: </a>
 <div id="ideas_show">
-  <% @show_idea.each do |show_idea| %>
-  <a href=""><%= show_idea.alias %> </a>says:
-  <%= show_idea.idea %><br />
-  <% end %>
-</div>
+  <hr />
+  <h2>People who also like this post:</h2>
+  <table>
+  <thead>
+    <tr>
+      <td>Alias</td>
+      <td>Name</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @show_idea.each do |idea| %>
+    <tr>
+      <td><%= idea.alias %></td>
+      <td><%= idea.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

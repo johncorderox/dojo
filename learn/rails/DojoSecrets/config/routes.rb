@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'user/new'
+  get 'secrets' => 'secrets#index'
 
   get 'user/create'
 

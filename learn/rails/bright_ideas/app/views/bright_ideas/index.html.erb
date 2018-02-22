@@ -1,12 +1,20 @@
-<h2>Hi !</h2>
+<h2>Hi <%= @show_name.name %>!</h2>
 <form action="/bright_ideas" method="POST">
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 <input type="text" name="idea" placeholder="Post something witty here..."> <button type="submit">Idea !</button>
 </form>
-
+<br /><br><br>
 <div id="ideas">
   <% @show_ideas.each do |show_ideas| %>
-  <a href="/users/<%= show_ideas.id %>"><%= show_ideas.alias %> </a>says:
-  <%= show_ideas.idea %><br />
-  <% end %>
+  <form action="/likes/add" method="POST">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="idea_hidden" value="<%= show_ideas.idea_id %>">
+    <a href="/users/<%= show_ideas.id %>"><%= show_ideas.name %> </a>says: <br><br>
+      <div id="user_idea">
+    <%= show_ideas.idea %><br />
+  </div>
+  <br />
+      <button type="submit">Like</button> | <a href="/bright_ideas/<%= show_ideas.idea_id %>"> like this</a><br /><br /><br />
+      <% end %>
+  </form>
 </div>

@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'likes/new'
+
+  get 'likes/create'
+
+  get 'sessions/new'
+
+  delete 'sessions/destroy'=>'sessions#destroy'
+
   get 'main' => 'main#index'
   post 'users/create' => 'users#create'
   get 'bright_ideas' => 'bright_ideas#index'
@@ -6,6 +14,7 @@ Rails.application.routes.draw do
   post 'bright_ideas' => 'bright_ideas#create'
 
   get 'users/:id' =>'users#show'
+  post 'likes/add' => 'likes#create'
 
 
 

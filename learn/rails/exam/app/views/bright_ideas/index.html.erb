@@ -1,0 +1,5 @@
+<h2>Hi <%= @user.alias %>!</h2>
+<form action="/bright_ideas" method="POST">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="text" name="idea" placeholder="Post something witty here..."> <button type="submit">Idea!</button>
+</form>
