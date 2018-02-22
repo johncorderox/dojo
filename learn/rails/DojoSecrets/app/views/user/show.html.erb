@@ -1,0 +1,15 @@
+<h2><%= @user_show.name %></h2>
+<label for="secret">New Secret</label><br />
+<textarea id="secret" name="secret"></textarea><br />
+<button type="submit">Create Secret!</button>
+<br />
+<hr />
+<h2>Secrets</h2> <br />
+<% @user_show.each do |user| %>
+<%= user.content %><br />
+<% end %>
+<hr />
+<h2>Likes</h2>
+<% @user_likes.each do |user2| %>
+<%= user2.content %><br />
+<% end %>

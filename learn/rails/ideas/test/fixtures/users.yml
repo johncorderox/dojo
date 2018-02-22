@@ -5,9 +5,11 @@ one:
   alias: MyString
   email: MyString
   password: MyString
+  digest: MyString
 
 two:
   name: MyString
   alias: MyString
   email: MyString
   password: MyString
+  digest: MyString
