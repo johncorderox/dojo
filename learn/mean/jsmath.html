@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+function random_choice(z) {
+
+  ran = Math.floor((Math.random() * z.length-1) + 0);
+
+  console.log(z[ran] + "=>>>>" +ran);
+
+}
+
+random_choice([2,3,4,5,6,7,8]);
+
+
+function how_many_even(c) {
+
+  let total = 0
+
+  for (let i = 0; i < c.length; i++) {
+
+    if (c[i] % 2 == 0) {
+
+      total ++;
+    }
+  }
+  console.log(total);
+}
+
+how_many_even([2,2,2,3]);
+
+function create_dummy_array(n) {
+  let john = [];
+
+  for (let i = 0; i < n; i++) {
+
+    num = Math.floor((Math.random() * 10) + 1);
+    john.push(num);
+  }
+  console.log(john);
+}
+
+create_dummy_array(5);
+
+function zero_negativity(a) {
+
+  if (a.contructor !== Array) {
+
+    return false;
+  }
+
+  for (let i = 0; i < a.length; i++) {
+
+    if (a[i] <= 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function is_even(b) {
+
+if (b % 2 !== 0) {
+  console.log("not even");
+ }
+ else {
+   console.log("even");
+ }
+}
+zero_negativity([2,3,4,0,-3]);
+is_even(2);
+</script>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post 'users/create' =>'users#create'
 
   get 'bright_ideas' => 'bright_ideas#index'
-  get 'bright_ideas' => 'bright_ideas#show'
+  get 'bright_ideas/:id' => 'bright_ideas#show'
   post 'bright_ideas/create' =>'bright_ideas#create'
   delete 'bright_ideas/:id' => 'bright_ideas#destroy'
 

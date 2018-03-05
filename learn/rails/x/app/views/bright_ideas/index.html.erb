@@ -1,19 +1,20 @@
 <h2>Hi <%= @user.alias%>!</h2>
 <form action="/bright_ideas/create" method="POST">
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-<input type="text" name="content" placeholder="Post Idea..." autofocus="true"> <button type="submit">Idea!</button>
+<input type="text" name="content" placeholder="Post Idea..." id="idea" autofocus="true"> <button class="btn btn-info" type="submit">Idea!</button>
 </form>
 <% @idea.each do |idea| %>
+<br>
 <form class="" action="/likes/create" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <a href="/users/<%= idea.user_id %>"><%= idea.alias %></a> says: <%= idea.content %>
   <input type="hidden" name="idea_id" value="<%= idea.id %>">
-  <button type="submit" name="button">Like</button>
+  <button type="submit" name="button" class="btn btn-primary">Like</button><br>
   <% if session[:user_id] == idea.user_id %>
    <a href="/bright_ideas/<%= idea.id %>/" data-method="delete">Delete My Idea</a>
    <br />
-   <a href="/bright_ideas/<%= idea.id %>">X people</a> like this <br><br><br><br> 
    <% end %>
+   <a href="/bright_ideas/<%= idea.id %>">X people</a> like this <br><br><br><br>
 </form>
   <% end %>
 <br><br><br><br><br>

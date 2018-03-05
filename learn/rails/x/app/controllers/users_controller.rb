@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   def index
   end
   def show
-    @user_show = User.find(session[:user_id])
-    @user_count_posts = User.find(session[:user_id]).ideas.count
-    @user_count_likes = User.find(session[:user_id]).likes.count
+    @user_show = User.find(params[:id])
+    @user_count_posts = User.find(params[:id]).ideas.count
+    @user_count_likes = User.find(params[:id]).likes.count
 
   end
   def new

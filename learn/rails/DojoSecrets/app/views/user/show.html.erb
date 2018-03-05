@@ -1,12 +1,17 @@
 <h2><%= @user_show.name %></h2>
-<label for="secret">New Secret</label><br />
-<textarea id="secret" name="secret"></textarea><br />
-<button type="submit">Create Secret!</button>
+<form class="" action="/secrets/create" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label for="secret">New Secret</label><br />
+  <input id="secret" name="content"><br />
+  <button type="submit">Create Secret!</button>
+</form>
+
 <br />
 <hr />
 <h2>Secrets</h2> <br />
 <% @user_show.each do |user| %>
-<%= user.content %><br />
+<%= user.content %>   <a href="/secrets/delete/<%= user.id %>" data-method="delete">Delete My Secret</a><br />
+Likes: <%= user.likes.count%><br /><br><br><br>
 <% end %>
 <hr />
 <h2>Likes</h2>

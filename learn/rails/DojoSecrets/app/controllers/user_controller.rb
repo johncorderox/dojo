@@ -2,10 +2,11 @@ class UserController < ApplicationController
   def new
   end
   def show
-    @user_show = User.find(params[:id]).secrets.select("*")
+    @user_show = Secret.all.where(user: User.find(session[:user_id]))
     @user_likes = Like.joins(:user).joins(:secret).select("*").where(user: User.find(params[:id]))
+    @show_secret_likes = Like.joins(:secret).where("secrets.id = 2")
   end
-
+#get all secrets name and likes by YOU
   def create
     @u = User.new(new_user)
     if @u.save
@@ -21,3 +22,4 @@ private
     params.require(:user).permit(:name, :email, :password)
   end
 end
+#User.find(session[:user_id]).secrets.joins(:likes).group("secrets.id")

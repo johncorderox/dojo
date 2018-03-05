@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+
+function magic_multiply(a, b ) {
+
+  if (a.constructor === Array) {
+
+    for ( let i = 0; i < a.length; i ++) {
+
+      a[i] = a[i] * b;
+
+    }
+    return a;
+  }
+  else if (a === NaN || b === NaN) {
+
+    console.log("Error: Can not multiply by string");
+  }
+
+  a = a * b;
+
+
+  return a;
+}
+
+let test1 = magic_multiply(5, 2);
+console.log(test1);
+
+let test2 = magic_multiply(0, 0);
+console.log(test2);
+
+let test3 = magic_multiply([1, 2, 3], 2);
+console.log(test3);
+
+</script>

@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221090611) do
+ActiveRecord::Schema.define(version: 20180222075630) do
 
   create_table "ideas", force: :cascade do |t|
     t.string   "idea"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "likes"
   end
 
   add_index "ideas", ["user_id"], name: "index_ideas_on_user_id"

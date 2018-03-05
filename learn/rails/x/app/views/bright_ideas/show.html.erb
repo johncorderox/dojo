@@ -1,0 +1,22 @@
+<a href="/bright_ideas" style="float: right">Bright Ideas</a>
+<br>
+<a href="/users/<%= @user_show_idea.user.id %>"><%= @user_show_idea.user.alias%> </a> says:
+ <input type="text" id="says-big" name="" value="<%= @user_show_idea.content %>"><br>
+
+<h2>People who liked this post: </h2><br>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>Alias</td>
+      <td>Name</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user_show_who_liked.each do |like| %>
+    <tr>
+      <td><a href="/users/<%= like.user_id%>"><%= like.alias %></a></td>
+      <td><%= like.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

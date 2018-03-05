@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get 'user/new'
-  get 'secrets' => 'secrets#index'
-
+  get 'secrets/' => 'secrets#index'
+  post 'secrets/create' => 'secrets#create'
+  post 'secrets/like' => 'secrets#like'
+  delete 'secrets/delete/:id' => 'secrets#destroy'
   get 'user/create'
 
   get 'user/new'
