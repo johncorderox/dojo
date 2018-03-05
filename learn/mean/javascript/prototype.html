@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+const MyObjConstructor = function(name) {
+  const myPrivateVar = "Hello"; // just to show that it is hard to see this private var easily
+  this.name = name; // but you can see the name!
+  this.method = function() {
+    console.log( "I am a method");
+  };
+}
+const obj1 = new MyObjConstructor('object1');
+const obj2 = new MyObjConstructor('object2');
+console.log(obj1);
+
+</script>
