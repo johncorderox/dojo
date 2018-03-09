@@ -19,7 +19,7 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
 
   if (req.session.count){
-
+    
       req.session.count += 1;
   } else {
     req.session.count = 1;
