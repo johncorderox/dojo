@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mood Board</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- As a heading -->
+    <nav class="navbar fixed-top navbar-light bg-light justify-content-between">
+      <a class="navbar-brand">Moodboard</a>
+      <form class="form-inline">
+        <div class="input-group">
+     <div class="input-group-prepend">
+       <span class="input-group-text" id="basic-addon1">@</span>
+     </div>
+     <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+   </div>
+      </form>
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Logout</button>
+    </nav>
+    <div class="card" id="profile-card"style="width: 18rem;">
+    <div class="card-body-top">
+      <h5 class="card-title">johncorderox</h5>
+      <p class="card-text"><img src="https://media.giphy.com/media/jUwpNzg9IcyrK/giphy.gif"></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        Moods: <br>
+        Following: <br>
+        Followers: <br>
+      </li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">View Profile</a>
+    </div>
+  </div>
+  <div id="mood-friends">
+    <div class="card">
+    <div class="card-body">
+      <b>@inooochi</b> 11:40 AM
+      <div id="mood-friends-gif">
+        <img src="https://media.giphy.com/media/T8Dhl1KPyzRqU/giphy.gif" />
+      </div>
+    </div>
+  </div>
+  <div class="card">
+  <div class="card-body">
+    <b>@Adhelle</b> 4:22 PM
+    <div id="mood-friends-gif">
+      <img src="https://media.giphy.com/media/l3q2RauzE5Vzf7iYo/giphy.gif" />
+    </div>
+  </div>
+</div>
+<div class="card">
+<div class="card-body">
+  <b>@Lady Luna</b> 2:43 AM
+  <div id="mood-friends-gif">
+    <img src="https://media.giphy.com/media/l0MYKnSyyXom5PPrO/giphy.gif" />
+  </div>
+</div>
+</div>
+  </div>
+  </body>
+</html>
+<style>
+
+#search-username {
+  margin-right: 100px;
+}
+#profile-card {
+  padding: 5px;
+  margin-top: 80px;
+  display: inline-block;
+    position: fixed;
+}
+#profile-card img {
+  max-width: 220px;
+}
+#mood-friends {
+  display: inline-block;
+  margin-left: 30%;
+  width: 60%;
+  height: 100%;
+
+}
+#mood-friends-gif {
+
+}
+img {
+  margin-bottom: 20px;
+  max-width: 250px;
+}
+</style>

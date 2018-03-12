@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja 2</title>
+  </head>
+  <body>
+console....
+  </body>
+</html>
+<script type="text/javascript">
+
+class Ninja {
+
+  constructor (name) {
+
+    this.name = name;
+    this.health = 100;
+    this.speed = 3;
+    this.strength = 3;
+  }
+
+     sayName() {
+
+      console.log("Your Name: "+this.name);
+
+    }
+     showStats() {
+
+      console.log("strength: "+this.strength + " speed " +this.speed);
+    }
+     drinkSake() {
+
+      this.health += 10;
+      speakWisdom();
+    }
+
+    speakWisdom() {
+
+      return "WISDOM FUNCTION";
+    }
+
+
+}
+
+class Sensei extends Ninja {
+
+  constructor(name) {
+
+    super (name);
+    let wisdom = 10;
+
+  }
+  callWisdom() {
+
+    const message = super.speakWisdom();
+    console.log(message);
+  }
+
+
+
+}
+
+ninja1 = new Ninja("John");
+ninja1.sayName();
+ninja1.showStats();
+
+const superSensei = new Sensei("Master Splinter");
+superSensei.callWisdom();
+superSensei.sayName();
+
+
+</script>

@@ -5,28 +5,15 @@
     <title></title>
   </head>
   <body>
-
+<h1 id="h1">joy go home</h1>
+<button type="button" name="button" onclick="sayHello()">change</button>
   </body>
 </html>
 <script type="text/javascript">
 
-let stars = starString([4]);
+function sayHello() {
 
-function starString(x) {
-
-  for (let i = 0; i < x.length; i++) {
-
-    if (typeof x[i] == 'number') {
-
-      return "*" * x[i];
-    }
-    else {
-
-    }
-
-  }
-
+document.getElementById('h1').innerHTML = "changed";
 }
-console.log(stars)
 
 </script>

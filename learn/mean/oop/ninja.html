@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+
+
+function Ninja (name) {
+
+  this.name = name;
+  this.health = 100;
+  var speed = 3;
+  var strength = 3;
+
+  this.showStrength = function() {
+
+    console.log("Your speed = "+speed+ " and your strength = "+strength);
+  }
+
+  this.drinkSake = function() {
+
+    this.health += 10;
+    console.log(this.health);
+  }
+
+  this.punch = function(other) {
+
+    if (other instanceof Ninja) {
+
+          other.health -= 15;
+
+    } else {
+
+      return false;
+    }
+
+
+
+  }
+
+  this.kick = function (obj) {
+
+
+    if (obj instanceof Ninja) {
+
+          obj.health -= (3 * 15)
+
+    }
+    return false;
+  }
+
+}
+
+Ninja.prototype.sayName = function() {
+
+
+  console.log(this.name);
+
+  return this.name;
+}
+
+const ninja1 = new Ninja("hyabusa");
+ninja1.sayName();
+ninja1.showStrength();
+ninja1.drinkSake();
+
+const blueNinja = new Ninja("Goemon");
+const redNinja = new Ninja("Bill Gates");
+console.log(blueNinja.health +" - " +redNinja.health);
+redNinja.punch(blueNinja);
+console.log(blueNinja.name + " was kicked by "+redNinja.name+ " and lost 15 health!");
+console.log(blueNinja.health);
+blueNinja.kick(redNinja);
+console.log(blueNinja.name + " kicked "+ redNinja.name + " and now has "+ redNinja.health);
+
+
+sugar = "hihiiuhui";
+console.log(sugar instanceof Ninja);
+
+</script>

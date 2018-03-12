@@ -1,0 +1,25 @@
+{
+  "name": "moodboard",
+  "description": "moodboard in the mean stack",
+  "main": "index.js",
+  "authors": [
+    "johncorderox"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "mood",
+    "board"
+  ],
+  "homepage": "https://github.com/johncorderox/dojo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1"
+  }
+}
