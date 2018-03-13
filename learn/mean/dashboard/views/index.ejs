@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <%  for ( x in bunny) { %> <br>
+
+      <a href="/rabbits/edit/<%= bunny[x].id %>">ID:</a>  Bunny Name: <%= bunny[x].name %> Bunny Color: <%= bunny[x].color %>
+      <form action="/rabbits/destroy/<%= bunny[x].id %>" method="post">
+        <button type="submit">Delete</button>
+      </form>
+  <%   } %> <br>
+   </body>
+</html>

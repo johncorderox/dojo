@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form action="/rabbits/<%= edit_bunny.id %>" method="post">
+      name <input type="text" name="name" value="<%= edit_bunny.name %>"><br>
+      color <input type="text" name="color" value="<%= edit_bunny.color %>"> <br>
+      <button type="submit">update your bunny</button>
+    </form>
+  </body>
+</html>

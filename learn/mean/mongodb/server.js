@@ -24,24 +24,37 @@ mongoose.connect('mongodb://localhost/basic_mongoose');
 mongoose.Promise = global.Promise;
 
 var UserSchema = new mongoose.Schema({
- name: String,
- age: Number
-})
+  name: {type: String, required: true},
+  age: {type: Number, required: true}
+ }, {timestamps: true})
 mongoose.model('User', UserSchema); // We are setting this Schema in our Models as 'User'
 var User = mongoose.model('User') // We are retrieving this Schema from our Models, named 'User'
 
 
-// Routes
-// Root Request
 app.get('/', function(req, res) {
   User.find({}, function(err, users) {
+
+    if (err) {
+
+      console.log("Could not find data in mongo DB");
+
+    } else {
+
+      console.log("output complete...........");
+      console.log(users);
+      res.render("index", {users: users});
+
+    }
+
     // This is the method that finds all of the users from the database
     // Notice how the first parameter is the options for what to find and the second is the
     //   callback function that has an error (if any) and all of the users
     // Keep in mind that everything you want to do AFTER you get the users from the database must
     //   happen inside of this callback for it to be synchronous
     // Make sure you handle the case when there is an error, as well as the case when there is no error
+
   })
+
 })
 // Add User Request
 app.post('/users', function(req, res) {
@@ -52,7 +65,7 @@ app.post('/users', function(req, res) {
      user.save(function(err) {
        // if there is an error console.log that something went wrong!
        if(err) {
-         console.log('something went wrong');
+          res.render('index', {errors: user.errors})
        } else { // else console.log that we did well and then redirect to the root route
          console.log('successfully added a user!');
          res.redirect('/');
