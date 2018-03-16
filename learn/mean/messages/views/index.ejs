@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Messages</title>
+  </head>
+  <body>
+    Name:
+<form action="message/" method="post">
+  <input type="text" name="name" value=""><br>
+  Message: <br>
+  <textarea name="message"></textarea><br>
+  <button type="submit">Post Message</button>
+</form>
+<% for ( a in result) { %>
+
+  <hr>
+  Name: <%= result[a].name %> <br>
+  Message: <%= result[a].message %> <br>
+  <form class="" action="message/<%= result[a].id %>" method="post">
+    <textarea name="comment" ></textarea>
+    <button type="submit" name="button">Add Comment</button>
+  </form>
+
+  <% for ( let i = 0; i < result.comments; i++) { %>
+
+    <%= result.comments[i] %>
+  <% } %>
+    <h3>Comments</h3>
+
+
+  <hr>
+<% } %>
+  </body>
+</html>
+<%= result %>

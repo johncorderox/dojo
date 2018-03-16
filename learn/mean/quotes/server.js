@@ -53,7 +53,6 @@ app.get('/quotes', function(req, res) {
     }
   })
 
-
 });
 // Add User Request
 app.post('/submit', function(req, res) {

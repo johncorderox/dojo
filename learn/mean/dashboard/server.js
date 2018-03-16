@@ -39,7 +39,7 @@ app.get('/', function(req, res){
 
       console.log("ERROR");
     } else {
-res.render("index", {bunny: bunny});
+res.json(bunny);
 
     }
 
