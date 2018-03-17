@@ -5,6 +5,8 @@ var app = express();
 var mongoose = require('mongoose');
 // Require body-parser (to receive post data from clients)
 var bodyParser = require('body-parser');
+
+const bcrypt = require('bcrypt');
 // Integrate body-parser with our App
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,19 +27,34 @@ mongoose.connect('mongodb://localhost/task');
 
 mongoose.Promise = global.Promise;
 
-var TaskSchema = new mongoose.Schema({
-  title: {type: String, required: true},
-  description: {type: String, required: true},
-  completed: {type: Boolean, default: false }
- }, {timestamps: true})
-mongoose.model('task', TaskSchema); // We are setting this Schema in our Models as 'User'
-var Task = mongoose.model('task') // We are retrieving this Schema from our Models, named 'User'
+var RegisterSchema = new mongoose.Schema({
+  email: {type: String, required: true},
+  first_name: {type: String, required: true},
+  last_name: {type: String, required: true},
+  password: {type: String, required: true},
+  birthday: {type: String, required: true}
+}, {timestamps: true});
+mongoose.model('register', RegisterSchema); // We are setting this Schema in our Models as 'User'
+var Register = mongoose.model('register') // We are retrieving this Schema from our Models, named 'User'
 
+
+RegisterSchema.pre('save', function(done){
+  this.name = this.addJayToString(this.name);
+  done();
+});
 
 app.get('/', function(req, res){
 
   res.render("index");
 
+});
+
+app.post('/register', function( req, res) {
+
+  Register.insert( {}, function(err, result) {
+
+
+  });
 });
 
 

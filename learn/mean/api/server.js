@@ -11,83 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Require path
 var path = require('path');
 // Setting our Static Folder Directory
-app.use(express.static(path.join(__dirname, './static')));
-// Setting our Views Folder Directory
-app.set('views', path.join(__dirname, './views'));
-// Setting our View Engine set to EJS
-app.set('view engine', 'ejs');
 
 
-//connect to mongo db
-
-
-mongoose.connect('mongodb://localhost/api');
-
-mongoose.Promise = global.Promise;
-
-var BunnySchema = new mongoose.Schema({
-  name: {type: String, required: true}
- }, {timestamps: true})
-mongoose.model('api', BunnySchema); // We are setting this Schema in our Models as 'User'
-var Api = mongoose.model('api') // We are retrieving this Schema from our Models, named 'User'
-
-
-app.get('/', function(req, res){
-  Api.find({}, function(err, bunny) {
-
-    if (err){
-
-    } else {
-      res.json(bunny);
-
-    }
-
-  });
-
-
-});
-
-app.get('/new/:name', function( req, res) {
-
-  var bunny = new Api({name: req.params.name});
-  bunny.save(function(err) {
-
-  if (err) {
-
-    console.log("Error in post rabbits");
-
-  } else {
-  console.log("Rabbit added to DB!");
-  res.redirect('/');
-  }
-  })
-
-})
-
-
-app.get('/remove/:name', function(req, res) {
-
-  Api.remove( {name: req.params.name}, function(err, result) {
-
-    if (err) {
-
-    } else {
-      res.redirect('/');
-    }
-  })
-});
-
-app.get('/:name', function (req, res) {
-
-  Api.find( {name: req.params.name}, function(err, result) {
-
-      res.json(result)
-  });
-})
-
-
-
-
+app.use(express.static( __dirname + '/angular-app/dist' ));
 
 
 // Setting our Server to Listen on Port: 8000
