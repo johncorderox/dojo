@@ -12,9 +12,38 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var path = require('path');
 // Setting our Static Folder Directory
 
-
 app.use(express.static( __dirname + '/angular-app/dist' ));
 
+
+
+
+
+mongoose.connect('mongodb://localhost/task');
+
+mongoose.Promise = global.Promise;
+
+var TaskSchema = new mongoose.Schema({
+  title: {type: String, required: true},
+  description: {type: String, required: true},
+  completed: {type: Boolean, default: false }
+ }, {timestamps: true})
+mongoose.model('task', TaskSchema); // We are setting this Schema in our Models as 'User'
+var Task = mongoose.model('task') // We are retrieving this Schema from our Models, named 'User'
+
+
+app.get('/tasks', function(req, res){
+  Task.find({}, function(err, result) {
+
+    if (err){
+
+    } else {
+      res.json(result);
+    }
+
+  });
+
+
+});
 
 // Setting our Server to Listen on Port: 8000
 app.listen(8000, function() {
