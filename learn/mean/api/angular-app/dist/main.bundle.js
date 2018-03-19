@@ -129,12 +129,17 @@ var HttpService = /** @class */ (function () {
     function HttpService(_http) {
         this._http = _http;
         this.getTasks();
+        this.getOneTask();
     }
     HttpService.prototype.getTasks = function () {
         // our http response is an Observable, store it in a variable
         var tempObservable = this._http.get('/tasks');
         // subscribe to the Observable and provide the code we would like to do with our data from the response
         tempObservable.subscribe(function (data) { return console.log("Got our tasks!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@", data); });
+    };
+    HttpService.prototype.getOneTask = function () {
+        var tempObservableTask = this._http.get('/tasks/5aa9e63fe4afad3b85657501');
+        tempObservableTask.subscribe(function (data2) { return console.log("--------- One task", data2); });
     };
     HttpService = __decorate([
         core_1.Injectable(),

@@ -45,6 +45,18 @@ app.get('/tasks', function(req, res){
 
 });
 
+app.get('/tasks/:id', function(req, res) {
+
+  Task.find( {_id: req.params.id}, function(err, result) {
+
+    if ( err) {
+      console.log(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+
 // Setting our Server to Listen on Port: 8000
 app.listen(8000, function() {
     console.log("listening on port 8000");
