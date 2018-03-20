@@ -18,8 +18,8 @@ mongoose.connect('mongodb://localhost/task');
 mongoose.Promise = global.Promise;
 
 var TaskSchema = new mongoose.Schema({
-  name: {type: String, required: true},
-  color: {type: String, required: true}
+  title: {type: String, required: true},
+  description: {type: String, required: true}
  }, {timestamps: true})
 mongoose.model('task', TaskSchema); // We are setting this Schema in our Models as 'User'
 var Task = mongoose.model('task') // We are retrieving this Schema from our Models, named 'User'
@@ -40,16 +40,20 @@ app.get('/tasks', function(req, res){
 
 });
 
-app.get('/tasks/:id', function(req, res) {
+app.post('/tasks', function(req, res) {
 
-  Task.find( {_id: req.params.id}, function(err, result) {
+  var task = new Task({title: req.body.title, description: req.body.description});
+  task.save(function(err) {
 
-    if ( err) {
-      console.log(err);
-    } else {
-      res.json(result);
-    }
-  });
+  if (err) {
+
+    console.log("Error in post rabbits");
+
+  } else {
+
+
+  }
+  })
 });
 
 // Setting our Server to Listen on Port: 8000

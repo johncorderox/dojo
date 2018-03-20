@@ -15,5 +15,9 @@ export class HttpService {
       // Return the observable to wherever the getTasks method was invoked.
       return this._http.get('/tasks');
   }
+  addTask(newtask){
+    return this._http.post('/tasks', newtask)
+}
+
 
 }
