@@ -6,3 +6,4 @@ chkconfig httpd on
 cd /var/www/html
 echo "<?php phpinfo();?>" > test.php
 git clone https://github.com/acloudguru/dynamodb
+#test
