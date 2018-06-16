@@ -1,6 +1,7 @@
 <?php
 
 use App\Coffee;
+use App\CoffeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,31 @@ use App\Coffee;
 
 Route::get('/', function () {
 
-$new_coffee = new Coffee;
-$new_coffee->name = "Espresso";
-$new_coffee->size = "Grande";
-$new_coffee->save();
 
-    return view('welcome');
+});
+
+Route::get('/coffee', function(){
+  $coffees = Coffee::all();
+  return view('coffee.index', compact('coffees'));
+
+});
+
+Route::get('/coffee/{{id}}', 'CoffeeController@show', function($id){
+
+return view('coffee.show');
+});
+
+Route::get('/coffee/create', function(){
+
+  return view('coffee.create');
+});
+
+Route::post('/coffee','CoffeeController@store', function(){
+
+
+});
+
+Route::delete('/coffee/{{id}}', 'CoffeeController@destroy', function($id){
+
+
 });
