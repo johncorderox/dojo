@@ -41,6 +41,20 @@ class CoffeeController extends Controller
     public function store(Request $request)
     {
 
+      $this->validate($request, [
+
+        'title' => 'required|max:50'
+      ]);
+
+      if ($file = $request->file('file')) {
+
+        $name = $file->getClientOriginalName;
+        $file->move(images, $name);
+        $input['file']
+      }
+      //getClientOriginalName();
+      //getClientSize();
+
       Coffee::create($request->all());
       return redirect('coffee');
     }

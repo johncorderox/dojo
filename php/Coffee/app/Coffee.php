@@ -11,4 +11,14 @@ class Coffee extends Model
 
     protected $fillable = ['name', 'size'];
 
+    public function getNameAttribute($value) {
+
+      return strtoupper($value);
+
+    }
+    // before_save :set_name
+    public function setNameAttribute($value) {
+
+      $this->attributes['name'] = strtoupper($value);
+    }
 }

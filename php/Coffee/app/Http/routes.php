@@ -44,3 +44,8 @@ Route::delete('/coffee/{{id}}', 'CoffeeController@destroy', function($id){
 
 
 });
+
+Route::group(['middleware'=>'web'], function(){
+
+
+});
