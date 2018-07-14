@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    Coffee ID: {{$coffee->id}}
-  </body>
-</html>
+@extends('layouts.app')
+@section('content')
+<div class="container">
+  <h2>Coffee Show</h2><br>
+  <hr>
+  ID: {{ $show_view->id}} 
+</div>
+@stop

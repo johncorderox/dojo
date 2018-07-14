@@ -1,7 +1,6 @@
 <?php
 
 use App\Coffee;
-use App\CoffeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,37 +14,30 @@ use App\CoffeeController;
 */
 
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/coffee', 'CoffeeController@index', function(){
 
 
 });
 
-Route::get('/coffee', function(){
-  $coffees = Coffee::all();
-  return view('coffee.index', compact('coffees'));
-
-});
-
-Route::get('/coffee/{{id}}', 'CoffeeController@show', function($id){
-
-return view('coffee.show');
-});
-
-Route::get('/coffee/create', function(){
-
-  return view('coffee.create');
-});
-
-Route::post('/coffee','CoffeeController@store', function(){
+Route::get('/coffee/create', 'CoffeeController@create', function(){
 
 
 });
 
-Route::delete('/coffee/{{id}}', 'CoffeeController@destroy', function($id){
+Route::post('/coffee', 'CoffeeController@store', function(){
 
 
 });
 
-Route::group(['middleware'=>'web'], function(){
+Route::auth();
 
+Route::get('/home', 'HomeController@index');
+
+Route::get('/coffee/{id}', function($id){
+  $show_view = Coffee::findOrFail($id);
+  return view('coffee.show')->with('show_view', $show_view);
 
 });

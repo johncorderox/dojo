@@ -16,8 +16,8 @@ class CoffeeController extends Controller
      */
     public function index()
     {
-
-
+        $coffees =  Coffee::all();
+        return view('coffee/index', ['coffees' => $coffees]);
     }
 
     /**
@@ -27,9 +27,7 @@ class CoffeeController extends Controller
      */
     public function create()
     {
-      Coffee::create($request->all());
-
-
+        return view('coffee/create');
     }
 
     /**
@@ -40,23 +38,8 @@ class CoffeeController extends Controller
      */
     public function store(Request $request)
     {
-
-      $this->validate($request, [
-
-        'title' => 'required|max:50'
-      ]);
-
-      if ($file = $request->file('file')) {
-
-        $name = $file->getClientOriginalName;
-        $file->move(images, $name);
-        $input['file']
-      }
-      //getClientOriginalName();
-      //getClientSize();
-
-      Coffee::create($request->all());
-      return redirect('coffee');
+        Coffee::create($request->all());
+        return redirect('coffee');
     }
 
     /**
@@ -67,7 +50,7 @@ class CoffeeController extends Controller
      */
     public function show($id)
     {
-        Coffee::findOrFail($id)->get();
+
     }
 
     /**
@@ -101,7 +84,6 @@ class CoffeeController extends Controller
      */
     public function destroy($id)
     {
-        Coffee::findOrFail($id)->delete();
-        return redirect('/coffee');
+        //
     }
 }

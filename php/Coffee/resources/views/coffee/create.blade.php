@@ -1,23 +1,19 @@
-<br><br><br><meta name="csrf-token" content="{{ csrf_token() }}" />
-<a href="/coffee">View All Coffee</a>
-<hr>
-@if(count($errors) > 0)
-  <div>
-    <ul>
-      @foreach($errors->all() as $error)
-        {{ $error }}
+@extends('layouts.app')
+@section('content')
+<div class="container">
+  <h2>Create New Coffee</h2>
+  <hr><br>
 
-      @endforeach
-    </ul>
-  </div>
+  {!!Form::open( ['url' => '/coffee', 'method' => 'post'] ) !!}
+  {!! Form::token() !!}
+  {!! Form::label('name', 'Coffee Name: ') !!}
+  {!! Form::text('name', null, ['class'=>'form-control']) !!} <br>
+  {!! Form::label('size', 'Size: ') !!}
+  {!! Form::text('size', null, ['class'=>'form-control']) !!}<br>
+  {!! Form::label('instructions', 'Instructions: ')!!}<br>
+  {!! Form::textarea('instructions', null, ['class'=>'form-control'])!!}<br>
+  {!! Form::submit('New Coffee', ['class'=>'btn btn-primary'])!!}
+  {!! Form::close()!!}
 
-@endif
-{!!Form::open(['method'=>'POST', 'action'=>'CoffeeController@store', 'files'=>true])!!}
-
-{!! Form::file('file', null) !!}
-{!! Form::label('name', 'Name: ') !!}
-{!! Form::text('name', null) !!}
-{!! Form::label('size', 'Size: ') !!}
-{!! Form::text('size', null) !!}
-{!! Form::submit('New Coffee')!!}
-{!! Form::close()!!}
+</div>
+@stop
