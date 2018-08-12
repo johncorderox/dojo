@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Person.css';
 
 class SearchBar extends Component {
 
@@ -22,5 +23,6 @@ class SearchBar extends Component {
 
   }
 }
+
 
 export default SearchBar;
