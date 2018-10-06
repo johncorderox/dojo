@@ -6,8 +6,13 @@ render() {
 
   return (
 
-    <h1>Form Here </h1>
-
+    <div>
+      <form onSubmit={this.props.getWeather}>
+      <input type="text" name="city" placeholder="city" />
+      <input type="text" name="country" placeholder="country" />
+      <button>Get Weather</button>
+      </form>
+    </div>
   );
 }
 
