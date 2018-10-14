@@ -1,0 +1,24 @@
+Linked List
+
+-- No Indexing, no random access, you cannot reach for the middle of the list.
+-- You have to start at the head and traverse till you find the node you want or the end of the list.
+Searching is slow -
+consumes more memory -
+Multiple Data Types +
+Linked List is a sibling structure to other Parent Data Structures
+
+Operations: Search, Insert, Delete
+
+
+function Node(value) {
+
+this.value = value;
+this.next = null;
+
+}
+
+function LinkedList() {
+
+this.head = null;
+this.length = 0;
+}
