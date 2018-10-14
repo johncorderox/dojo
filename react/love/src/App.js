@@ -1,29 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import SearchBar from './Person/Person.js';
-import YTSearch from 'youtube-api-search';
-import VideoList from './Person/video_list.js';
-
-const API_KEY = 'AIzaSyCUYYnEaa5lstrtv17J9btZX8lAgVqAtE8';
+import React, { Component } from 'react'
+import axios from 'axios';
 
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { videos: [] };
-    YTSearch({key: API_KEY, term: 'Beach house album'}, (videos) => {
-      this.setState({ videos });
-    });
+class Trigger extends Component {
+
+  state = {
+    persons: []
   }
-  render() {
-    return (
-      <div>
-        <SearchBar />
-        <VideoList videos={this.state.videos} />
-      </div>
-    );
-  }
+
+  componentDidMount() {
+  axios.get(`https://jsonplaceholder.typicode.com/users`)
+    .then(res => {
+      const persons = res.data;
+      this.setState({ persons });
+    })
 }
 
-export default App;
+  handleClick = (e) => {
+
+  }
+  render () {
+    return (
+      <ul>
+        { this.state.persons.map(person => <li>{person.name}</li>)}
+      </ul>
+    )
+  }
+}
+export default Trigger;
