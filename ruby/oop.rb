@@ -39,3 +39,5 @@ mage.setHair_Color("red")
 mage.setClothes_color("yellow")
 mage.printHairColor
 mage.printClothesColor
+
+mage.instanceOf? Character
