@@ -1,7 +1,7 @@
 class Character
 
-  def initialize(class2, sex, hair_color, clothes_color)
-    @class2,@sex,@hair_color,@clothes_color = class2, sex, hair_color, clothes_color
+  def initialize(class2, hair_color, clothes_color)
+    @class2,@hair_color,@clothes_color = class2, hair_color, clothes_color
   end
 
     def printChar
@@ -32,12 +32,31 @@ end
 
 
 
-mage = Character.new("Mage", "Male", "Black", "Grey")
-mage.printSex
+mage = Character.new("Mage", "Black", "Grey")
 mage.printChar
 mage.setHair_Color("red")
 mage.setClothes_color("yellow")
 mage.printHairColor
 mage.printClothesColor
 
-mage.instanceOf? Character
+@sex = ("sa") unless @sex
+mage.printSex
+
+merchant = Character.new
+
+def merchange.sex
+  male
+end
+
+
+## Class Methods
+
+class User
+
+  def self.plural_name
+    "users"
+  end
+
+end
+
+User.plural_name
