@@ -1,0 +1,38 @@
+// Double Pipe
+
+a = 2
+b = 3
+
+a || = b
+
+if a is NOT defined or nil, assign it to b which is 3. so A = 3 IF a does not exist.
+
+@user || = User.find(session[:id])
+
+if @user is not defined, assign it to the session of user(example)
+
+
+Bang Operator (!)
+
+! will modify state of object perma
+
+word = "Hello"
+word.downcase => "hello"
+
+word => "Hello"
+
+word.downcas!e => "hello"
+
+word => "hello"
+
+
+Predicate Method (?)
+
+? Will return true or false
+
+5.odd? => true
+2.odd? => false because 2 == even
+
+Private Methods (private)
+
+can only be used in that class and no where outside of it
