@@ -36,3 +36,23 @@ Predicate Method (?)
 Private Methods (private)
 
 can only be used in that class and no where outside of it
+
+You can only CALL it by a public method inside the
+
+
+Ruby Structs -- a simple class. a way to encapsulate attributes
+
+
+A struct has a fixed number of attributes while a hash will take anything.
+
+Computer = Struct.new(:name, :os)
+
+laptop = Computer.new(‘MacBook’, ‘OS X’)
+
+laptop.name
+#=> MacBook
+
+
+//laptop values TO array
+laptop.to_a
+["Macbook", "Mac OSX"]

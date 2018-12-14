@@ -1,0 +1,28 @@
+constructor -> The way in which you establish the initial state of the component.
+
+props -> The data which is passed to the child component FROM the parent component.
+
+
+Component Life Cycle.
+
+componentDidMount() _ triggered after the component mounted.
+
+Events - onClick, onSubmit, onChange
+
+
+React Life Cycle --
+Initialize
+State/Prop update
+Destroy
+
+A react component is a function or class which optionally accepts input and returns  a react element .
+
+
+When would you use class component vs functional?
+
+if it has state or lifecycle methods, use CLASS else FUNCTIONAL
+
+What are react Keys?
+
+Keys keep track of what items have changed, added, etc.
+return <li key={uid}>{task}</li>
