@@ -22,7 +22,33 @@ When would you use class component vs functional?
 
 if it has state or lifecycle methods, use CLASS else FUNCTIONAL
 
+USE this.props with CLASSES.
+
 What are react Keys?
 
 Keys keep track of what items have changed, added, etc.
 return <li key={uid}>{task}</li>
+
+
+
+------------------------ LIFE CYCLE
+
+GetDefaultProps - called only once
+GetInitialState - called only once
+ComponentWillMount - this is called before the render method is called. setting the state in this phase WILL NOT TRIGGER RE RENDOR
+Render - returns needed markup
+componentDidMount - after render is executed. any dom interactions should happen here.
+
+
+ComponentWillUnount - good for clearing timers.
+
+
+
+- Creating a functional component
+
+const person = () => {
+
+return <p>hi</p>
+}
+
+export default person;
