@@ -40,7 +40,7 @@ Render - returns needed markup
 componentDidMount - after render is executed. any dom interactions should happen here.
 
 
-ComponentWillUnount - good for clearing timers.
+ComponentWillUnount - good for clearing timers. also when an element gets removed.
 
 
 
@@ -52,3 +52,10 @@ return <p>hi</p>
 }
 
 export default person;
+
+
+
+High Order Components ~~~~~
+
+reusing component logic. takes in a component and returns a new one. share common functionality between
+components without repeating code. when it returns a compo it could return additional data.
