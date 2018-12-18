@@ -9,6 +9,19 @@ class App extends Component {
 
 }
 
+state = {
+  counter: 0
+}
+
+
+add = () => {
+
+  this.setState({
+
+     counter: this.state.counter + 1
+  });
+
+}
 
 componentWillMount() {
 
@@ -23,7 +36,11 @@ componentDidMount() {
     console.log("render method!!!");
     return (
       <div className="App">
-        <h1>Text Word Generator</h1>
+        <h1>To Do List</h1>
+        <form onSubmit={}>
+        <input type="text" />
+        <button type="submit">Add</button>
+        </form>
       </div>
     );
   }

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="john" ng-controller="firstController">
+  <input type="text" ng-model="color" style="background-color: {{color}}">
+  <h2>{{ loves.name}}</h2>
+  <hr>
+  {{ char}}
+</div>
+
+</body>
+</html>
+
+<script>
+var app = angular.module("john", []);
+
+app.controller("firstController", function($scope) {
+
+  $scope.char = "Alchemist";
+
+});
+</script>
