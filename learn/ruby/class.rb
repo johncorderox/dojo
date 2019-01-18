@@ -1,5 +1,6 @@
 class Dog
 
+
 def initialize(breed)
   @breed = breed
 end
@@ -16,6 +17,9 @@ def breed
   puts @breed
 end
 
+def self.what_am_i
+  "Im a good dog!"
+end
 
 
 
@@ -26,3 +30,7 @@ chewy = Dog.new("chihuahua")
 chewy.speak
 chewy.walk
 chewy.breed
+chewy.what_am_i
+
+
+#Class Methods = we can call directly without instantiating new objects
