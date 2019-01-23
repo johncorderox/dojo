@@ -1,0 +1,13 @@
+Redux
+
+Central data store for all app data
+any component can access data from it
+makes state management easy
+
+
+Action is passed to reducer - the reducer updates the central state.
+
+
+Redux store (warehouse)- central. JS Object - Global state
+
+Reducer = function that interacts the store
