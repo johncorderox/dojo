@@ -1,30 +1,59 @@
-const Title = (props) => {
+var emails    = ["test.email+alex@viirtue.com", "test.e.mail+bob.cathy@viirtue.com", "testemail+david@lee.tcode.com"];
+var temp      = "";
+var local     = "";
+var domain    = "";
+var emailList = [];
 
-  const {title} = props;
-  return React.createElement('h1',null, text);
+filterEmail();
+sendEmails();
+
+function filterEmail() {
+  for (var i = 0; i < emails.length; i++) {
+    // Seperate the email into 2 vars at the "@" mark
+    temp   = emails[i].split("@");
+    local  = temp[0];
+    domain = temp[1];
+    temp   = "";
+
+    local = local.split("");
+
+
+     for ( var j = 0; j < local.length; j++) {
+
+       if (local[j] === ".") {
+         local.splice(j, 1);
+       }
+       // Breaks loop when + is found
+       if (local[j] === "+") {
+         break;
+       }
+       temp += local[j];
+     }
+     local = temp;
+
+   emailList.push(local+"@"+domain);
+
+   resetVars();
+
+    }
+
 }
 
-const App = (props) => {
-
-  return React.createElement(Title, { text: "This should render"} );
+// Reset Vars for next iteration
+function resetVars() {
+        temp    = "";
+        local   = "";
+        domain  = "";
 }
 
+// Remove duplicates and log sent emails
+function sendEmails() {
 
+let unique = [...new Set(emailList)];
 
-// Stateless Funcional Component - React compnent that doesnt keep track of state
+for (var x = 0; x < unique.length; x++) {
 
-<script src="node_modules/react/umd/react.development.js"></script>
-<script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+      console.log(unique[x]);
 
-
-const List = (props) => {
-    const listItems = props.items.map((itemString) => {
-        return <li key={itemString}>{itemString}</li>
-    });
-    return (
-        <ul>
-            {listItems}
-        </ul>
-    )
+  }
 }
-ReactDOM.render(<List items= { ['React', 'Redux', 'Node', 'Express'] } />, document.getElementById('content'));
